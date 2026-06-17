@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asian Rover Challenge 2026 | MACE Kothamangalam</title>
+    <meta name="description" content="Asian Rover Challenge 2026 - International Space Robotics Competition hosted at MACE Kothamangalam. Design, build, and operate next-generation Mars rovers.">
+    
+    <!-- Tailwind CSS (built) -->
+    <link rel="stylesheet" href="dist/output.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-space-950 text-white font-body overflow-x-hidden">
+
+    <!-- Start Experience Screen (for audio permission) -->
+    <div id="start-screen" class="fixed inset-0 z-[10000] bg-space-950 flex items-center justify-center">
+        <div class="text-center px-6">
+            <div class="mb-8">
+                <div class="text-6xl mb-4">🚀</div>
+                <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mb-3 tracking-wider">ASIAN ROVER CHALLENGE</h2>
+                <p class="font-mono text-xs text-gray-500 tracking-[0.3em] uppercase">MACE Kothamangalam • 2026</p>
+            </div>
+            <button id="start-btn" class="start-btn">
+                <span>Start</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </button>
+            <p class="font-mono text-[10px] text-gray-600 mt-4 tracking-wider">CLICK TO ENTER WEBSITE</p>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-space-950 flex items-center justify-center">
+        <div class="text-center">
+            <div class="preloader-ring">
+                <div class="ring-outer"></div>
+                <div class="ring-inner"></div>
+            </div>
+            <p class="font-display text-neon-cyan text-sm tracking-[0.3em] mt-8 loading-text">INITIALIZING MISSION</p>
+        </div>
+    </div>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="starfield" class="fixed inset-0 z-0 pointer-events-none"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group" id="nav-logo">
+                    <img src="assets/images/logo.png" alt="ARC Logo" class="h-10 w-auto">
+                    <div class="hidden sm:block">
+                        <p class="font-display text-sm font-bold text-white leading-none tracking-wider">ASIAN ROVER</p>
+                        <p class="font-display text-xs text-neon-cyan tracking-[0.25em]">CHALLENGE</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-1" id="nav-menu">
+                    <a href="#home" class="nav-link active" data-section="home">Home</a>
+                    <a href="#about" class="nav-link" data-section="about">About</a>
+                    <a href="#challenges" class="nav-link" data-section="challenges">Challenges</a>
+                    <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
+                    <a href="#venue" class="nav-link" data-section="venue">Venue</a>
+                    <a href="#sponsors" class="nav-link" data-section="sponsors">Sponsors</a>
+                    <a href="#register" class="register-btn ml-4">
+                        <span class="btn-glow"></span>
+                        <span class="relative z-10 font-display text-xs tracking-wider">REGISTER NOW</span>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-toggle" class="md:hidden relative w-10 h-10 flex items-center justify-center z-[60]">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu - Fixed fullscreen overlay -->
+        <div id="mobile-menu" class="md:hidden mobile-menu-overlay">
+            <div class="flex flex-col items-center justify-center h-full gap-6 px-8">
+                <a href="#home" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">HOME</a>
+                <a href="#about" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">ABOUT</a>
+                <a href="#challenges" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">CHALLENGES</a>
+                <a href="#timeline" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">TIMELINE</a>
+                <a href="#venue" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">VENUE</a>
+                <a href="#sponsors" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">SPONSORS</a>
+                <a href="#register" class="register-btn mt-4" onclick="closeMobileMenu()">
+                    <span class="btn-glow"></span>
+                    <span class="relative z-10 font-display text-sm tracking-wider">REGISTER NOW</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- 3D Rover Canvas (pointer-events:none so mouse works over it) -->
+        <div id="rover-container" class="absolute inset-0 z-10 pointer-events-none"></div>
+        
+        <!-- Hero Overlay Gradient -->
+        <div class="absolute inset-0 z-20 bg-gradient-to-b from-space-950/40 via-transparent to-space-950"></div>
+        
+        <!-- Grid overlay -->
+        <div class="absolute inset-0 z-15 grid-overlay opacity-10"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-30 text-center py-20 px-4 max-w-6xl mx-auto">
+            <!-- Tagline -->
+            <div class="hero-tag inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 backdrop-blur-sm mb-8">
+                <span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+                <span class="font-mono text-xs text-neon-cyan tracking-widest uppercase">Season 2026 • MACE Kothamangalam</span>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="hero-title font-display font-black leading-none mb-6">
+                <span class="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white hero-line-1">ASIAN</span>
+                <span class="block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hero-line-2">ROVER</span>
+                <span class="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white hero-line-3">CHALLENGE</span>
+            </h1>
+            
+            <!-- Subtitle with dynamic text -->
+            <p class="hero-subtitle font-body text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+                International Space Robotics Competition<br class="hidden sm:block">
+                <span class="text-mars-300 dynamic-tagline" id="dynamic-tagline">Design. Build. Conquer Mars.</span>
+            </p>
+            
+            <!-- Rotating Words Bar -->
+            <div class="hero-word-rotator mb-6 overflow-hidden h-8 flex items-center justify-center">
+                <span class="font-mono text-sm text-neon-cyan/60 tracking-widest">[&nbsp;</span>
+                <span id="rotating-word" class="font-mono text-sm text-neon-cyan tracking-widest inline-block min-w-[200px]"></span>
+                <span class="font-mono text-sm text-neon-cyan/60 tracking-widest">&nbsp;]</span>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#register" class="primary-cta group">
+                    <span class="cta-bg"></span>
+                    <span class="relative z-10 flex items-center gap-2 font-display text-sm tracking-wider">
+                        REGISTER YOUR TEAM
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </span>
+                </a>
+                <a href="#about" class="secondary-cta font-display text-sm tracking-wider">
+                    EXPLORE MISSIONS
+                </a>
+            </div>
+            
+            <!-- Countdown -->
+            <div class="hero-countdown mt-12 sm:mt-16">
+                <p class="font-mono text-xs text-gray-500 tracking-widest uppercase mb-4">Event Countdown</p>
+                <div class="countdown-grid">
+                    <div class="countdown-block">
+                        <span id="countdown-days" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Days</span>
+                    </div>
+                    <span class="countdown-separator text-neon-cyan text-xl sm:text-2xl font-light animate-pulse">:</span>
+                    <div class="countdown-block">
+                        <span id="countdown-hours" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Hours</span>
+                    </div>
+                    <span class="countdown-separator text-neon-cyan text-xl sm:text-2xl font-light animate-pulse">:</span>
+                    <div class="countdown-block">
+                        <span id="countdown-minutes" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Mins</span>
+                    </div>
+                    <span class="countdown-separator text-neon-cyan text-xl sm:text-2xl font-light animate-pulse">:</span>
+                    <div class="countdown-block">
+                        <span id="countdown-seconds" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="relative z-30 py-4 border-y border-white/5 bg-space-900/50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-neon-cyan stat-number" data-target="50">0</span><span class="font-display text-2xl sm:text-3xl font-bold text-neon-cyan">+</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Teams Worldwide</p>
+                </div>
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-neon-blue stat-number" data-target="15">0</span><span class="font-display text-2xl sm:text-3xl font-bold text-neon-blue">+</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Countries</p>
+                </div>
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-neon-purple stat-number" data-target="5">0</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Mission Tasks</p>
+                </div>
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-mars-300 stat-number" data-target="4">0</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Days of Challenge</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="relative z-30 py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">About the Challenge</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    WELCOME TO <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">ARC & ISDC</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left: Content -->
+                <div class="about-content space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-mars-400/30 bg-mars-400/5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-mars-400"></span>
+                        <span class="font-mono text-[10px] text-mars-300 tracking-widest uppercase">Space Robotics Society</span>
+                    </div>
+                    
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        SPROS ARC and ISDC are premier <span class="text-neon-cyan font-semibold">space robotics engineering competitions</span>. They challenge university students to conceptualise, design, develop and operate an astronaut-assistive next-generation space Rover and Drone, performing specific missions in <span class="text-mars-300 font-semibold">Mars-simulated conditions</span>.
+                    </p>
+                    
+                    <p class="text-gray-400 leading-relaxed">
+                        The objective of the competitions is to provide students with a real-world interdisciplinary engineering experience, combining practical engineering skills with soft skills, including business planning and project management.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-6">
+                        <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+                            <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <h4 class="font-display text-sm font-semibold text-white mb-1">Autonomous Navigation</h4>
+                            <p class="text-xs text-gray-500">GPS-denied terrain traversal</p>
+                        </div>
+                        <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+                            <div class="w-10 h-10 rounded-lg bg-neon-blue/10 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5 text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            </div>
+                            <h4 class="font-display text-sm font-semibold text-white mb-1">Science Mission</h4>
+                            <p class="text-xs text-gray-500">Soil analysis & life detection</p>
+                        </div>
+                        <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+                            <div class="w-10 h-10 rounded-lg bg-neon-purple/10 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <h4 class="font-display text-sm font-semibold text-white mb-1">Equipment Servicing</h4>
+                            <p class="text-xs text-gray-500">Robotic arm manipulation</p>
+                        </div>
+                        <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+                            <div class="w-10 h-10 rounded-lg bg-mars-400/10 flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5 text-mars-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <h4 class="font-display text-sm font-semibold text-white mb-1">Terrain Traversal</h4>
+                            <p class="text-xs text-gray-500">Extreme Mars terrain nav</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Image with effects -->
+                <div class="about-image relative">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10">
+                        <img src="assets/images/hero-rover.png" alt="Mars Rover on terrain" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-space-950 via-transparent to-transparent"></div>
+                    </div>
+                    <!-- Floating tech badge -->
+                    <div class="absolute -bottom-6 -left-6 p-4 rounded-xl border border-neon-cyan/20 bg-space-900/90 backdrop-blur-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-blue flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-display text-sm font-bold text-white">LIVE CHALLENGE</p>
+                                <p class="font-mono text-[10px] text-neon-cyan">MACE KOTHAMANGALAM 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHALLENGES SECTION -->
+    <section id="challenges" class="relative z-30 py-24 sm:py-32">
+        <!-- Mars terrain background parallax -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/mars-terrain.png" alt="" class="w-full h-full object-cover opacity-10">
+            <div class="absolute inset-0 bg-gradient-to-b from-space-950 via-space-950/80 to-space-950"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-mars-300 tracking-[0.3em] uppercase">The Competitions</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    CHALLENGE <span class="text-transparent bg-clip-text bg-gradient-to-r from-mars-300 to-neon-orange">MISSIONS</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-mars-300 to-neon-orange mx-auto rounded-full"></div>
+            </div>
+            
+            <!-- IRC Card -->
+            <div class="challenge-card mb-12">
+                <div class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
+                    <div class="lg:col-span-3 p-8 sm:p-12">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-6">
+                            <span class="font-mono text-[10px] text-neon-cyan tracking-widest">IRC</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                            International Rover Challenge
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
+                            Design and build an astronaut-assistive rover capable of performing complex missions in Mars-simulated terrain. Teams compete in navigation, science, equipment servicing, and terrain traversal tasks.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neon-cyan"></span>
+                                <span>Autonomous Nav</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neon-blue"></span>
+                                <span>Science Mission</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neon-purple"></span>
+                                <span>Equipment Srv</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-mars-400"></span>
+                                <span>Terrain Traverse</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                <span>Presentation</span>
+                            </div>
+                        </div>
+                        <a href="#register" class="inline-flex items-center gap-2 text-neon-cyan font-display text-sm tracking-wider hover:gap-3 transition-all">
+                            LEARN MORE
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                    <div class="lg:col-span-2 relative min-h-[300px]">
+                        <img src="assets/images/teams.png" alt="Teams working on rover" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-space-950/80 via-transparent to-transparent lg:bg-gradient-to-l"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ISDC Card -->
+            <div class="challenge-card">
+                <div class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
+                    <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
+                        <img src="assets/images/mars-terrain.png" alt="Mars terrain" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-l from-space-950/80 via-transparent to-transparent lg:bg-gradient-to-r"></div>
+                    </div>
+                    <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-purple/30 bg-neon-purple/5 mb-6">
+                            <span class="font-mono text-[10px] text-neon-purple tracking-widest">ISDC</span>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                            International Space Drone Challenge
+                        </h3>
+                        <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
+                            Push the boundaries of aerial robotics by designing autonomous drones for space exploration. Navigate challenging environments, perform aerial surveys, and complete precision landing tasks.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neon-purple"></span>
+                                <span>Aerial Survey</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neon-cyan"></span>
+                                <span>Precision Landing</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-mars-400"></span>
+                                <span>Autonomous Flight</span>
+                            </div>
+                            <div class="mission-tag">
+                                <span class="w-1.5 h-1.5 rounded-full bg-neon-blue"></span>
+                                <span>Payload Delivery</span>
+                            </div>
+                        </div>
+                        <a href="#register" class="inline-flex items-center gap-2 text-neon-purple font-display text-sm tracking-wider hover:gap-3 transition-all">
+                            LEARN MORE
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section id="timeline" class="relative z-30 py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-blue tracking-[0.3em] uppercase">Key Dates</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    MISSION <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">TIMELINE</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="relative">
+                <!-- Central line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan via-neon-blue to-neon-purple timeline-line"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- Item 1 -->
+                    <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                        <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+                            <span class="font-mono text-xs text-neon-cyan tracking-widest">PHASE 01</span>
+                            <h3 class="font-display text-xl font-bold text-white mt-2">Registration Opens</h3>
+                            <p class="text-gray-400 mt-2 text-sm">Teams from across Asia and the world begin registering. Submit your preliminary designs and team profiles.</p>
+                            <span class="font-mono text-sm text-mars-300 mt-2 inline-block">July 2026</span>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-neon-cyan bg-space-950 flex items-center justify-center timeline-dot">
+                            <div class="w-3 h-3 rounded-full bg-neon-cyan"></div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12"></div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                        <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0"></div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-neon-blue bg-space-950 flex items-center justify-center timeline-dot">
+                            <div class="w-3 h-3 rounded-full bg-neon-blue"></div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12">
+                            <span class="font-mono text-xs text-neon-blue tracking-widest">PHASE 02</span>
+                            <h3 class="font-display text-xl font-bold text-white mt-2">Preliminary Design Review</h3>
+                            <p class="text-gray-400 mt-2 text-sm">Submit System Design Papers and preliminary rover specifications for expert panel review.</p>
+                            <span class="font-mono text-sm text-mars-300 mt-2 inline-block">September 2026</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                        <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+                            <span class="font-mono text-xs text-neon-purple tracking-widest">PHASE 03</span>
+                            <h3 class="font-display text-xl font-bold text-white mt-2">Critical Design Review</h3>
+                            <p class="text-gray-400 mt-2 text-sm">Teams present detailed designs, testing results, and final rover specifications to judges.</p>
+                            <span class="font-mono text-sm text-mars-300 mt-2 inline-block">November 2026</span>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-neon-purple bg-space-950 flex items-center justify-center timeline-dot">
+                            <div class="w-3 h-3 rounded-full bg-neon-purple"></div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12"></div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                        <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0"></div>
+                        <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-mars-400 bg-space-950 flex items-center justify-center timeline-dot">
+                            <div class="w-3 h-3 rounded-full bg-mars-400"></div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12">
+                            <span class="font-mono text-xs text-mars-300 tracking-widest">PHASE 04</span>
+                            <h3 class="font-display text-xl font-bold text-white mt-2">The Grand Challenge</h3>
+                            <p class="text-gray-400 mt-2 text-sm">On-field competition at MACE Kothamangalam. Rovers face real Mars-simulated terrain tasks.</p>
+                            <span class="font-mono text-sm text-mars-300 mt-2 inline-block">January 2027</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENUE SECTION -->
+    <section id="venue" class="relative z-30 py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-purple tracking-[0.3em] uppercase">Location</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    THE <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-mars-300">VENUE</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-purple to-mars-300 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="venue-card rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative min-h-[400px]">
+                        <img src="assets/images/venue.png" alt="MACE Kothamangalam" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-space-950/50"></div>
+                    </div>
+                    <div class="p-8 sm:p-12 flex flex-col justify-center">
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-4">
+                            MACE Kothamangalam
+                        </h3>
+                        <p class="text-gray-300 text-lg mb-2">Mar Athanasius College of Engineering</p>
+                        <p class="text-gray-500 mb-8">Kothamangalam, Ernakulam, Kerala, India</p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 flex-shrink-0 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white text-sm">Strategic Location</p>
+                                    <p class="text-xs text-gray-500">45 km from Kochi International Airport, nestled in the foothills of Western Ghats</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-neon-blue/10 flex-shrink-0 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white text-sm">World-Class Facilities</p>
+                                    <p class="text-xs text-gray-500">Custom Mars-simulated test arena with diverse terrain features</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-neon-purple/10 flex-shrink-0 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white text-sm">Rich Heritage</p>
+                                    <p class="text-xs text-gray-500">One of the premier engineering institutions in Kerala, est. 1961</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://maps.google.com/?q=MACE+Kothamangalam" target="_blank" class="inline-flex items-center gap-2 text-neon-purple font-display text-sm tracking-wider hover:gap-3 transition-all">
+                            VIEW ON MAP
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS / PARTNERS SECTION -->
+    <section id="sponsors" class="relative z-30 py-24 sm:py-32 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 section-header">
+                <span class="font-mono text-xs text-gray-500 tracking-[0.3em] uppercase">Our Partners</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    ORGANIZED <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">BY</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <div class="sponsor-card p-8 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-h-[120px]">
+                    <div class="text-center">
+                        <p class="font-display text-sm font-bold text-white tracking-wider">SPROS</p>
+                        <p class="font-mono text-[10px] text-gray-500 mt-1">Space Robotics Society</p>
+                    </div>
+                </div>
+                <div class="sponsor-card p-8 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-h-[120px]">
+                    <div class="text-center">
+                        <p class="font-display text-sm font-bold text-white tracking-wider">MACE</p>
+                        <p class="font-mono text-[10px] text-gray-500 mt-1">Host Institution</p>
+                    </div>
+                </div>
+                <div class="sponsor-card p-8 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-h-[120px]">
+                    <div class="text-center">
+                        <p class="font-display text-sm font-bold text-white tracking-wider">ISRO</p>
+                        <p class="font-mono text-[10px] text-gray-500 mt-1">Technical Partner</p>
+                    </div>
+                </div>
+                <div class="sponsor-card p-8 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-h-[120px]">
+                    <div class="text-center">
+                        <p class="font-display text-sm font-bold text-white tracking-wider">IEEE</p>
+                        <p class="font-mono text-[10px] text-gray-500 mt-1">Knowledge Partner</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-600 font-mono text-xs tracking-widest uppercase">Sponsorship slots available • <a href="mailto:contact@roverchallenge.org" class="text-neon-cyan hover:underline">Become a sponsor</a></p>
+        </div>
+    </section>
+
+    <!-- REGISTRATION SECTION -->
+    <section id="register" class="relative z-30 py-24 sm:py-32 overflow-hidden">
+        <!-- Background effects -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-purple/5"></div>
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="section-header">
+                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Join the Mission</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-6xl font-bold mt-4 mb-6">
+                    REGISTER YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple">TEAM</span>
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-12">
+                    Ready to push the boundaries of space robotics? Assemble your team, design your rover, and compete against the brightest minds across the globe.
+                </p>
+            </div>
+            
+            <div class="register-card p-8 sm:p-12 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+                <div class="grid sm:grid-cols-3 gap-8 mb-10">
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-cyan/5 border border-neon-cyan/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-cyan">01</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-white mb-2">Form Your Team</h4>
+                        <p class="text-xs text-gray-500">Gather 5-10 university students passionate about robotics</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue/20 to-neon-blue/5 border border-neon-blue/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-blue">02</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-white mb-2">Submit Application</h4>
+                        <p class="text-xs text-gray-500">Complete registration form with team and university details</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple/20 to-neon-purple/5 border border-neon-purple/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-purple">03</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-white mb-2">Start Building</h4>
+                        <p class="text-xs text-gray-500">Begin designing and building your Mars rover prototype</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://forms.gle/Vg1dp9rsQPGwvsUu7" target="_blank" class="primary-cta w-full sm:w-auto group">
+                        <span class="cta-bg"></span>
+                        <span class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider">
+                            REGISTER FOR IRC
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </span>
+                    </a>
+                    <a href="https://forms.gle/Vg1dp9rsQPGwvsUu7" target="_blank" class="secondary-cta w-full sm:w-auto font-display text-sm tracking-wider">
+                        REGISTER FOR ISDC
+                    </a>
+                </div>
+                
+                <p class="text-gray-600 text-xs mt-6 font-mono">
+                    Registration fee applies • For queries: <a href="mailto:contact@roverchallenge.org" class="text-neon-cyan hover:underline">contact@roverchallenge.org</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-30 border-t border-white/5 bg-space-950/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="assets/images/logo.png" alt="ARC Logo" class="h-10 w-auto">
+                        <div>
+                            <p class="font-display text-sm font-bold text-white leading-none tracking-wider">ASIAN ROVER</p>
+                            <p class="font-display text-xs text-neon-cyan tracking-[0.25em]">CHALLENGE 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-md mb-6">
+                        The premier international space robotics competition challenging university students to design and operate next-generation Mars rovers.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">QUICK LINKS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">About ARC</a></li>
+                        <li><a href="#challenges" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">IRC Challenge</a></li>
+                        <li><a href="#challenges" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">ISDC Challenge</a></li>
+                        <li><a href="#register" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">Register</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">CONTACT</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="mailto:contact@roverchallenge.org" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                contact@roverchallenge.org
+                            </a>
+                        </li>
+                        <li>
+                            <span class="text-gray-500 text-sm flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                MACE, Kothamangalam, Kerala
+                            </span>
+                        </li>
+                        <li>
+                            <a href="https://roverchallenge.org" target="_blank" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                                roverchallenge.org
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/5 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-gray-600 text-xs font-mono">© 2026 Asian Rover Challenge. All rights reserved.</p>
+                <p class="text-gray-700 text-xs font-mono">Hosted at MACE Kothamangalam • Powered by Srishti</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio Toggle Button -->
+    <button id="audio-toggle" class="audio-toggle" title="Toggle ambient audio">
+        🔇
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
