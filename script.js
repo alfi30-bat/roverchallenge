@@ -285,110 +285,48 @@ document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
     rimLight.position.set(3, -2, -5);
     scene.add(rimLight);
     
-    // Build the Rover
+    // Load GLTF Rovers
     const roverGroup = new THREE.Group();
+    const loader = new THREE.GLTFLoader();
     
-    const bodyGeometry = new THREE.BoxGeometry(2.4, 0.6, 1.6);
-    const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x2a2a3e, metalness: 0.8, roughness: 0.3 });
-    const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
-    body.position.y = 0.8;
-    roverGroup.add(body);
+    // Configure DRACOLoader for compressed models
+    const dracoLoader = new THREE.DRACOLoader();
+    dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
+    loader.setDRACOLoader(dracoLoader);
     
-    const topGeometry = new THREE.BoxGeometry(1.8, 0.1, 1.2);
-    const topMaterial = new THREE.MeshStandardMaterial({ color: 0x00f5ff, metalness: 0.9, roughness: 0.1, emissive: 0x003344, emissiveIntensity: 0.5 });
-    const topPanel = new THREE.Mesh(topGeometry, topMaterial);
-    topPanel.position.y = 1.15;
-    roverGroup.add(topPanel);
-    
-    const mastGeometry = new THREE.CylinderGeometry(0.06, 0.06, 1, 8);
-    const mastMaterial = new THREE.MeshStandardMaterial({ color: 0x888899, metalness: 0.9, roughness: 0.2 });
-    const mast = new THREE.Mesh(mastGeometry, mastMaterial);
-    mast.position.set(0.7, 1.7, 0);
-    roverGroup.add(mast);
-    
-    const headGeometry = new THREE.BoxGeometry(0.3, 0.2, 0.25);
-    const headMaterial = new THREE.MeshStandardMaterial({ color: 0x333345, metalness: 0.8, roughness: 0.3 });
-    const head = new THREE.Mesh(headGeometry, headMaterial);
-    head.position.set(0.7, 2.3, 0);
-    roverGroup.add(head);
-    
-    const lensGeometry = new THREE.CylinderGeometry(0.06, 0.08, 0.1, 8);
-    const lensMaterial = new THREE.MeshStandardMaterial({ color: 0x00f5ff, emissive: 0x00f5ff, emissiveIntensity: 0.8, metalness: 1, roughness: 0 });
-    const lens = new THREE.Mesh(lensGeometry, lensMaterial);
-    lens.rotation.z = Math.PI / 2;
-    lens.position.set(0.85, 2.3, 0);
-    roverGroup.add(lens);
-    
-    const panelArmGeo = new THREE.BoxGeometry(0.08, 0.05, 1.8);
-    const panelArmMat = new THREE.MeshStandardMaterial({ color: 0x555566, metalness: 0.9, roughness: 0.2 });
-    const leftArm = new THREE.Mesh(panelArmGeo, panelArmMat);
-    leftArm.position.set(-0.3, 1.2, 0);
-    leftArm.rotation.x = 0.2;
-    roverGroup.add(leftArm);
-    
-    const panelGeo = new THREE.BoxGeometry(1.2, 0.04, 1.6);
-    const panelMat = new THREE.MeshStandardMaterial({ color: 0x1a1a4e, metalness: 0.7, roughness: 0.2 });
-    const solarPanel = new THREE.Mesh(panelGeo, panelMat);
-    solarPanel.position.set(-1.2, 1.3, 0);
-    solarPanel.rotation.z = 0.15;
-    roverGroup.add(solarPanel);
-    
-    const armSegGeo1 = new THREE.BoxGeometry(0.1, 0.8, 0.1);
-    const armMat = new THREE.MeshStandardMaterial({ color: 0x666677, metalness: 0.9, roughness: 0.2 });
-    const armSeg1 = new THREE.Mesh(armSegGeo1, armMat);
-    armSeg1.position.set(1.3, 1.2, 0.3);
-    armSeg1.rotation.z = -0.3;
-    roverGroup.add(armSeg1);
-    
-    const armSegGeo2 = new THREE.BoxGeometry(0.08, 0.6, 0.08);
-    const armSeg2 = new THREE.Mesh(armSegGeo2, armMat);
-    armSeg2.position.set(1.6, 1.7, 0.3);
-    armSeg2.rotation.z = 0.5;
-    roverGroup.add(armSeg2);
-    
-    const wheelGeometry = new THREE.CylinderGeometry(0.35, 0.35, 0.2, 16);
-    const wheelMaterial = new THREE.MeshStandardMaterial({ color: 0x3a3a4a, metalness: 0.6, roughness: 0.5 });
-    const treadGeometry = new THREE.TorusGeometry(0.35, 0.05, 6, 16);
-    const treadMaterial = new THREE.MeshStandardMaterial({ color: 0x222233, metalness: 0.5, roughness: 0.7 });
-    
-    const wheelPositions = [
-        { x: -1, y: 0.35, z: 1 }, { x: -1, y: 0.35, z: -1 },
-        { x: 0, y: 0.35, z: 1 }, { x: 0, y: 0.35, z: -1 },
-        { x: 1, y: 0.35, z: 1 }, { x: 1, y: 0.35, z: -1 },
-    ];
-    
-    const wheels = [];
-    wheelPositions.forEach(pos => {
-        const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
-        wheel.position.set(pos.x, pos.y, pos.z);
-        wheel.rotation.x = Math.PI / 2;
-        roverGroup.add(wheel);
-        wheels.push(wheel);
+    loader.load('assets/prana_v1.gltf', (gltf) => {
+        const prana = gltf.scene;
+        prana.scale.set(0.4, 0.4, 0.4);
+        prana.position.set(-1.2, 0.5, 0);
+        // Slightly rotate it
+        prana.rotation.y = 0.2;
         
-        const tread = new THREE.Mesh(treadGeometry, treadMaterial);
-        tread.position.set(pos.x, pos.y, pos.z);
-        tread.rotation.y = Math.PI / 2;
-        roverGroup.add(tread);
+        // Ensure materials interact with lights
+        prana.traverse((node) => {
+            if (node.isMesh && node.material) {
+                node.material.metalness = 0.5;
+                node.material.roughness = 0.5;
+                // Optional: fix emissive map intensity if they are glowing too much
+            }
+        });
+        roverGroup.add(prana);
     });
-    
-    const suspGeo = new THREE.BoxGeometry(0.08, 0.04, 0.8);
-    const suspMat = new THREE.MeshStandardMaterial({ color: 0x555566, metalness: 0.8, roughness: 0.3 });
-    [-1, 0, 1].forEach(x => {
-        const susp = new THREE.Mesh(suspGeo, suspMat);
-        susp.position.set(x, 0.55, 0);
-        roverGroup.add(susp);
+
+    loader.load('assets/srishti_rv26.gltf', (gltf) => {
+        const srishti = gltf.scene;
+        srishti.scale.set(0.4, 0.4, 0.4);
+        srishti.position.set(1.2, 0.5, 0);
+        // Slightly rotate it
+        srishti.rotation.y = -0.2;
+        
+        srishti.traverse((node) => {
+            if (node.isMesh && node.material) {
+                node.material.metalness = 0.5;
+                node.material.roughness = 0.5;
+            }
+        });
+        roverGroup.add(srishti);
     });
-    
-    const antennaGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.8, 8);
-    const antenna = new THREE.Mesh(antennaGeo, mastMaterial);
-    antenna.position.set(-0.6, 1.6, -0.4);
-    roverGroup.add(antenna);
-    
-    const antennaDishGeo = new THREE.SphereGeometry(0.12, 8, 8, 0, Math.PI);
-    const antennaDish = new THREE.Mesh(antennaDishGeo, topMaterial);
-    antennaDish.position.set(-0.6, 2.05, -0.4);
-    antennaDish.rotation.x = -Math.PI / 2;
-    roverGroup.add(antennaDish);
     
     const particleCount = 60;
     const particleGeo = new THREE.BufferGeometry();
@@ -430,8 +368,6 @@ document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
         roverGroup.position.y = -1 + Math.sin(time * 0.5) * 0.15;
         roverGroup.position.x = 2 - scrollProgress * 6;
         roverGroup.scale.setScalar(1 - scrollProgress * 0.3);
-        
-        wheels.forEach(wheel => { wheel.rotation.y += 0.02; });
         
         const positions = particles.geometry.attributes.position.array;
         for (let i = 0; i < particleCount; i++) {
