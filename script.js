@@ -171,7 +171,7 @@ document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
                 alpha: Math.random(),
                 alphaDir: Math.random() > 0.5 ? 0.005 : -0.005,
                 speed: Math.random() * 0.02 + 0.005,
-                color: `hsl(${180 + Math.random() * 60}, 80%, ${70 + Math.random() * 30}%)`
+                color: Math.random() > 0.8 ? `hsla(45, 90%, 60%, ${Math.random()})` : `rgba(37, 99, 235, ${Math.random() * 0.5})`
             });
         }
     }
@@ -207,7 +207,7 @@ document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
                 const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 3);
-                gradient.addColorStop(0, `rgba(0, 245, 255, ${star.alpha * 0.15})`);
+                gradient.addColorStop(0, `rgba(15, 23, 42, ${star.alpha * 0.15})`);
                 gradient.addColorStop(1, 'transparent');
                 ctx.fillStyle = gradient;
                 ctx.globalAlpha = 1;
@@ -234,7 +234,7 @@ document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
                 ss.x - Math.cos(ss.angle) * ss.length,
                 ss.y - Math.sin(ss.angle) * ss.length
             );
-            gradient.addColorStop(0, `rgba(0, 245, 255, ${ss.alpha})`);
+            gradient.addColorStop(0, `rgba(15, 23, 42, ${ss.alpha})`);
             gradient.addColorStop(1, 'transparent');
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5;
@@ -337,7 +337,7 @@ document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
         particlePos[i * 3 + 2] = (Math.random() - 0.5) * 8;
     }
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0x00f5ff, size: 0.04, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
+    const particleMat = new THREE.PointsMaterial({ color: 0x4f46e5, size: 0.06, transparent: true, opacity: 0.5 });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
     
