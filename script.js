@@ -31,12 +31,12 @@ window.addEventListener('load', () => {
     const ctx = canvas.getContext('2d');
     let stars = [];
     let shootingStars = [];
-    
+
     function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-    
+
     function createStars() {
         stars = [];
         const count = Math.floor((canvas.width * canvas.height) / 5000);
@@ -52,7 +52,7 @@ window.addEventListener('load', () => {
             });
         }
     }
-    
+
     function createShootingStar() {
         if (Math.random() > 0.995) {
             shootingStars.push({
@@ -66,20 +66,20 @@ window.addEventListener('load', () => {
             });
         }
     }
-    
+
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         stars.forEach(star => {
             star.alpha += star.alphaDir;
             if (star.alpha <= 0.1 || star.alpha >= 1) star.alphaDir *= -1;
-            
+
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
             ctx.fillStyle = star.color;
             ctx.globalAlpha = star.alpha * 0.6;
             ctx.fill();
-            
+
             if (star.radius > 1) {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
@@ -91,15 +91,15 @@ window.addEventListener('load', () => {
                 ctx.fill();
             }
         });
-        
+
         createShootingStar();
         shootingStars = shootingStars.filter(ss => {
             ss.x += Math.cos(ss.angle) * ss.speed;
             ss.y += Math.sin(ss.angle) * ss.speed;
             ss.alpha -= ss.decay;
-            
+
             if (ss.alpha <= 0) return false;
-            
+
             ctx.beginPath();
             ctx.moveTo(ss.x, ss.y);
             ctx.lineTo(
@@ -117,14 +117,14 @@ window.addEventListener('load', () => {
             ctx.lineWidth = 1.5;
             ctx.globalAlpha = 1;
             ctx.stroke();
-            
+
             return true;
         });
-        
+
         ctx.globalAlpha = 1;
         requestAnimationFrame(animate);
     }
-    
+
     resize();
     createStars();
     animate();
@@ -135,49 +135,49 @@ window.addEventListener('load', () => {
 (function initRover3D() {
     const container = document.getElementById('rover-container');
     if (!container) return;
-    
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
     renderer.domElement.style.pointerEvents = 'none'; // Ensure mouse goes through
     container.appendChild(renderer.domElement);
-    
+
     // Lighting
     const ambientLight = new THREE.AmbientLight(0x404060, 0.5);
     scene.add(ambientLight);
-    
+
     const mainLight = new THREE.DirectionalLight(0x00f5ff, 1.2);
     mainLight.position.set(5, 8, 5);
     scene.add(mainLight);
-    
+
     const accentLight = new THREE.PointLight(0xff6b35, 0.8, 20);
     accentLight.position.set(-5, 3, -3);
     scene.add(accentLight);
-    
+
     const rimLight = new THREE.PointLight(0xa855f7, 0.6, 15);
     rimLight.position.set(3, -2, -5);
     scene.add(rimLight);
-    
+
     // Load GLTF Rovers
     const roverGroup = new THREE.Group();
     const loader = new THREE.GLTFLoader();
-    
+
     // Configure DRACOLoader for compressed models
     const dracoLoader = new THREE.DRACOLoader();
     dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
     loader.setDRACOLoader(dracoLoader);
-    
+
     loader.load('assets/prana_v1.gltf', (gltf) => {
         const prana = gltf.scene;
         prana.scale.set(0.4, 0.4, 0.4);
         prana.position.set(-1.2, 0.5, 0);
         // Slightly rotate it
         prana.rotation.y = 0.2;
-        
+
         // Ensure materials interact with lights
         prana.traverse((node) => {
             if (node.isMesh && node.material) {
@@ -195,7 +195,7 @@ window.addEventListener('load', () => {
         srishti.position.set(1.2, 0.5, 0);
         // Slightly rotate it
         srishti.rotation.y = -0.2;
-        
+
         srishti.traverse((node) => {
             if (node.isMesh && node.material) {
                 node.material.metalness = 0.5;
@@ -204,7 +204,7 @@ window.addEventListener('load', () => {
         });
         roverGroup.add(srishti);
     });
-    
+
     const particleCount = 60;
     const particleGeo = new THREE.BufferGeometry();
     const particlePos = new Float32Array(particleCount * 3);
@@ -217,26 +217,26 @@ window.addEventListener('load', () => {
     const particleMat = new THREE.PointsMaterial({ color: 0x4f46e5, size: 0.06, transparent: true, opacity: 0.5 });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
-    
+
     roverGroup.position.set(2, -1, 0);
     roverGroup.rotation.y = -0.5;
     scene.add(roverGroup);
-    
+
     camera.position.set(4, 3, 6);
     camera.lookAt(roverGroup.position);
-    
+
     // Mouse interaction (still tracks mouse for 3D rotation even with pointer-events:none on canvas)
     let mouseX = 0, mouseY = 0;
     document.addEventListener('mousemove', (e) => {
         mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
         mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     });
-    
+
     let scrollProgress = 0;
     window.addEventListener('scroll', () => {
         scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
     });
-    
+
     let time = 0;
     function animateRover() {
         time += 0.01;
@@ -245,7 +245,7 @@ window.addEventListener('load', () => {
         roverGroup.position.y = -1 + Math.sin(time * 0.5) * 0.15;
         roverGroup.position.x = 2 - scrollProgress * 6;
         roverGroup.scale.setScalar(1 - scrollProgress * 0.3);
-        
+
         const positions = particles.geometry.attributes.position.array;
         for (let i = 0; i < particleCount; i++) {
             positions[i * 3 + 1] += Math.sin(time + i) * 0.002;
@@ -253,16 +253,16 @@ window.addEventListener('load', () => {
         }
         particles.geometry.attributes.position.needsUpdate = true;
         particles.rotation.y = time * 0.05;
-        
+
         accentLight.position.x = Math.sin(time) * 5;
         rimLight.position.z = Math.cos(time * 0.7) * 5;
-        
+
         renderer.render(scene, camera);
         requestAnimationFrame(animateRover);
     }
-    
+
     animateRover();
-    
+
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
@@ -273,9 +273,9 @@ window.addEventListener('load', () => {
 // ========== GSAP ANIMATIONS ==========
 function initAnimations() {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
-    
+
     const heroTl = gsap.timeline({ delay: 0.5 });
-    
+
     heroTl
         .from('.hero-tag', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' })
         .from('.hero-line-1', { y: 80, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.4')
@@ -286,7 +286,7 @@ function initAnimations() {
         .from('.hero-cta', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
         .from('.hero-countdown', { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
         .from('.scroll-indicator', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2');
-    
+
     // Section Headers
     gsap.utils.toArray('.section-header').forEach(header => {
         gsap.from(header.children, {
@@ -294,7 +294,7 @@ function initAnimations() {
             y: 50, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out'
         });
     });
-    
+
     // About
     gsap.from('.about-content', {
         scrollTrigger: { trigger: '.about-content', start: 'top 80%', toggleActions: 'play none none none' },
@@ -308,7 +308,7 @@ function initAnimations() {
         scrollTrigger: { trigger: '.about-feature', start: 'top 85%', toggleActions: 'play none none none' },
         y: 40, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out'
     });
-    
+
     // Challenge Cards
     gsap.utils.toArray('.challenge-card').forEach(card => {
         gsap.from(card, {
@@ -316,7 +316,7 @@ function initAnimations() {
             y: 60, opacity: 0, duration: 0.8, ease: 'power3.out'
         });
     });
-    
+
     // Timeline
     gsap.from('.timeline-line', {
         scrollTrigger: { trigger: '.timeline-line', start: 'top 80%', end: 'bottom 20%', scrub: 1 },
@@ -334,13 +334,13 @@ function initAnimations() {
             scale: 0, duration: 0.6, delay: i * 0.1 + 0.2, ease: 'back.out(1.7)'
         });
     });
-    
+
     // Venue
     gsap.from('.venue-card', {
         scrollTrigger: { trigger: '.venue-card', start: 'top 80%', toggleActions: 'play none none none' },
         y: 60, opacity: 0, duration: 0.8, ease: 'power3.out'
     });
-    
+
     // Sponsors
     gsap.utils.toArray('.sponsor-card').forEach((card, i) => {
         gsap.from(card, {
@@ -348,13 +348,13 @@ function initAnimations() {
             y: 40, opacity: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out'
         });
     });
-    
+
     // Register
     gsap.from('.register-card', {
         scrollTrigger: { trigger: '.register-card', start: 'top 80%', toggleActions: 'play none none none' },
         y: 60, opacity: 0, scale: 0.95, duration: 0.8, ease: 'power3.out'
     });
-    
+
     // Stats Counter
     gsap.utils.toArray('.stat-number').forEach(stat => {
         const target = parseInt(stat.dataset.target);
@@ -365,13 +365,13 @@ function initAnimations() {
             }, once: true
         });
     });
-    
+
     // Parallax
     gsap.to('#rover-container', {
         scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 1 },
         y: 200, opacity: 0, ease: 'none'
     });
-    
+
     // Dynamic Text Animations
     initTextAnimations();
 }
@@ -379,11 +379,11 @@ function initAnimations() {
 // ========== COUNTDOWN TIMER ==========
 (function initCountdown() {
     const eventDate = new Date('2027-01-15T09:00:00+05:30').getTime();
-    
+
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = eventDate - now;
-        
+
         if (distance < 0) {
             document.getElementById('countdown-days').textContent = '00';
             document.getElementById('countdown-hours').textContent = '00';
@@ -391,18 +391,18 @@ function initAnimations() {
             document.getElementById('countdown-seconds').textContent = '00';
             return;
         }
-        
+
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
+
         document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
         document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
     }
-    
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 })();
@@ -413,7 +413,7 @@ function initAnimations() {
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -421,7 +421,7 @@ function initAnimations() {
             navbar.classList.remove('scrolled');
         }
     });
-    
+
     const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
         let current = '';
@@ -438,7 +438,7 @@ function initAnimations() {
             }
         });
     });
-    
+
     // Mobile menu toggle
     mobileToggle.addEventListener('click', () => {
         const hamburger = mobileToggle.querySelector('.hamburger');
@@ -460,20 +460,21 @@ function closeMobileMenu() {
 function initTextAnimations() {
     // Rotating Words in Hero (typewriter effect)
     const rotatingWords = [
-        'AUTONOMOUS NAVIGATION',
-        'MARS TERRAIN TRAVERSAL',
-        'ROBOTIC ARM OPERATIONS',
-        'SCIENCE EXPERIMENTS',
-        'GPS-DENIED NAVIGATION',
-        'SOIL SAMPLE ANALYSIS',
-        'EQUIPMENT SERVICING',
-        'DRONE RECONNAISSANCE'
+        'MAINTENANCE & REPAIR ',
+        'SAMPLE RECOVERY',
+        'SETTLEMENT DESIGN',
+        'SCIENCE INVESTIGATION',
+        'PROJECT DEFENCE',
+        '30 ELITE TEAMS',
+        'STUDENT BUILT • STUDENT LED ',
+        'REMOTE OPERATIONS',
+        'AI & COMPUTER VISION'
     ];
-    
+
     const rotatingEl = document.getElementById('rotating-word');
     if (rotatingEl) {
         let wordIndex = 0;
-        
+
         function typeNextWord() {
             const word = rotatingWords[wordIndex];
             gsap.to(rotatingEl, {
@@ -495,27 +496,27 @@ function initTextAnimations() {
                 }
             });
         }
-        
+
         // Blinking cursor
         const cursorSpan = document.createElement('span');
         cursorSpan.textContent = '|';
         cursorSpan.style.animation = 'blink 1s step-end infinite';
         cursorSpan.style.color = '#00f5ff';
         rotatingEl.parentElement.insertBefore(cursorSpan, rotatingEl.nextSibling);
-        
+
         const style = document.createElement('style');
         style.textContent = '@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }';
         document.head.appendChild(style);
-        
+
         typeNextWord();
     }
-    
+
     // Glitch effect on section headers
     gsap.utils.toArray('h2').forEach(heading => {
         const originalText = heading.textContent;
         heading.setAttribute('data-text', originalText);
         heading.classList.add('glitch-text');
-        
+
         ScrollTrigger.create({
             trigger: heading, start: 'top 85%',
             onEnter: () => {
@@ -524,7 +525,7 @@ function initTextAnimations() {
             }, once: true
         });
     });
-    
+
     // --- Staggered reveal on about paragraphs (preserves inner HTML) ---
     gsap.utils.toArray('.about-content p').forEach((p, idx) => {
         gsap.from(p, {
@@ -532,7 +533,7 @@ function initTextAnimations() {
             y: 30, opacity: 0, duration: 0.8, delay: idx * 0.15, ease: 'power3.out'
         });
     });
-    
+
     // --- Staggered reveal on about-feature cards ---
     gsap.utils.toArray('.about-feature').forEach((card, idx) => {
         gsap.from(card, {
@@ -540,7 +541,7 @@ function initTextAnimations() {
             y: 40, opacity: 0, duration: 0.6, delay: idx * 0.1, ease: 'power3.out'
         });
     });
-    
+
     // Timeline heading typewriter
     gsap.utils.toArray('.timeline-item h3').forEach(h3 => {
         gsap.from(h3, {
@@ -548,7 +549,7 @@ function initTextAnimations() {
             text: { value: '', delimiter: '' }, duration: 0.8, ease: 'none'
         });
     });
-    
+
     // Dynamic tagline swap
     const taglines = [
         'Design. Build. Conquer Mars.',
@@ -556,7 +557,7 @@ function initTextAnimations() {
         'From Campus to Mars Mission.',
         'Push Boundaries. Break Limits.',
     ];
-    
+
     const taglineEl = document.getElementById('dynamic-tagline');
     if (taglineEl) {
         let tagIndex = 0;
@@ -566,7 +567,7 @@ function initTextAnimations() {
                 opacity: 0, y: -10, duration: 0.3,
                 onComplete: () => {
                     taglineEl.textContent = taglines[tagIndex];
-                    gsap.fromTo(taglineEl, 
+                    gsap.fromTo(taglineEl,
                         { opacity: 0, y: 10 },
                         { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
                     );
@@ -578,7 +579,7 @@ function initTextAnimations() {
 
 // ========== SMOOTH SCROLL ==========
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
@@ -589,4 +590,80 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// ========== REGISTRATION COUNTDOWN ==========
+function initCountdown() {
+    // Target date: August 1, 2026, 23:59:59 local time
+    const targetDate = new Date('August 1, 2026 23:59:59').getTime();
+    
+    const daysEl = document.getElementById('countdown-days');
+    const hoursEl = document.getElementById('countdown-hours');
+    const minsEl = document.getElementById('countdown-minutes');
+    const secsEl = document.getElementById('countdown-seconds');
+    
+    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        
+        if (distance < 0) {
+            daysEl.innerText = "00";
+            hoursEl.innerText = "00";
+            minsEl.innerText = "00";
+            secsEl.innerText = "00";
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        daysEl.innerText = days.toString().padStart(2, '0');
+        hoursEl.innerText = hours.toString().padStart(2, '0');
+        minsEl.innerText = minutes.toString().padStart(2, '0');
+        secsEl.innerText = seconds.toString().padStart(2, '0');
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', initCountdown);
+
+// ========== STEPPER SCROLL ANIMATION ==========
+document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.stepper-step');
+    const progressBar = document.getElementById('stepper-progress');
+    if (!steps.length || !progressBar) return;
+
+    function updateStepper() {
+        const container = document.querySelector('.stepper-container');
+        if (!container) return;
+
+        const containerRect = container.getBoundingClientRect();
+        const containerTop = containerRect.top;
+        const containerHeight = containerRect.height;
+        const windowHeight = window.innerHeight;
+
+        // Calculate how far through the stepper the viewport center is
+        const viewportCenter = windowHeight * 0.75;
+        const progress = Math.min(Math.max((viewportCenter - containerTop) / containerHeight, 0), 1);
+        progressBar.style.height = (progress * 100) + '%';
+
+        // Animate each step when it enters the viewport
+        steps.forEach((step) => {
+            const stepRect = step.getBoundingClientRect();
+            const stepCenter = stepRect.top + stepRect.height / 2;
+
+            if (stepCenter < viewportCenter) {
+                step.classList.add('stepper-active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateStepper, { passive: true });
+    updateStepper();
 });

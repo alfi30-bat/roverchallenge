@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-space-950 text-white font-body overflow-x-hidden">
+<body class="bg-space-950 text-slate-900 font-body overflow-x-hidden">
 
 
 
@@ -37,7 +37,7 @@
                 <div class="ring-outer"></div>
                 <div class="ring-inner"></div>
             </div>
-            <p class="font-display text-white text-sm tracking-[0.3em] mt-8 loading-text">INITIALIZING MISSION</p>
+            <p class="font-display text-slate-900 text-sm tracking-[0.3em] mt-8 loading-text">INITIALIZING MISSION</p>
         </div>
     </div>
 
@@ -52,7 +52,7 @@
                 <a href="/" class="flex items-center gap-3 group" id="nav-logo">
                     <img src="assets/images/logo.png" alt="ASRC Logo" class="h-10 w-auto">
                     <div class="hidden sm:block">
-                        <p class="font-display text-sm font-bold text-white leading-none tracking-wider">ASIAN ROVER</p>
+                        <p class="font-display text-sm font-bold text-slate-900 leading-none tracking-wider">ASIAN ROVER</p>
                         <p class="font-display text-xs text-neon-cyan tracking-[0.25em]">CHALLENGE</p>
                     </div>
                 </a>
@@ -120,14 +120,14 @@
             
             <!-- Main Title -->
             <h1 class="hero-title font-display font-black leading-none mb-6">
-                <span class="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white hero-line-1">ASIAN</span>
+                <span class="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-slate-900 hero-line-1">ASIAN</span>
                 <span class="block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hero-line-2">ROVER</span>
-                <span class="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white hero-line-3">CHALLENGE</span>
+                <span class="block text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-slate-900 hero-line-3">CHALLENGE</span>
             </h1>
             
             <!-- Subtitle with dynamic text -->
-            <p class="hero-subtitle font-body text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-                International Space Robotics Competition<br class="hidden sm:block">
+            <p class="hero-subtitle font-mono text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+                Global Space Robotics Competition<br class="hidden sm:block">
                 <span class="text-mars-300 dynamic-tagline" id="dynamic-tagline">Design. Build. Conquer Mars.</span>
             </p>
             
@@ -156,25 +156,25 @@
             
             <!-- Countdown -->
             <div class="hero-countdown mt-12 sm:mt-16">
-                <p class="font-mono text-xs text-gray-500 tracking-widest uppercase mb-4">Event Countdown</p>
+                <p class="font-mono text-xs text-gray-500 tracking-widest uppercase mb-4">Registration Deadline</p>
                 <div class="countdown-grid">
                     <div class="countdown-block">
-                        <span id="countdown-days" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span id="countdown-days" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900">00</span>
                         <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Days</span>
                     </div>
                     <span class="countdown-separator text-neon-cyan text-xl sm:text-2xl font-light animate-pulse">:</span>
                     <div class="countdown-block">
-                        <span id="countdown-hours" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span id="countdown-hours" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900">00</span>
                         <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Hours</span>
                     </div>
                     <span class="countdown-separator text-neon-cyan text-xl sm:text-2xl font-light animate-pulse">:</span>
                     <div class="countdown-block">
-                        <span id="countdown-minutes" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span id="countdown-minutes" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900">00</span>
                         <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Mins</span>
                     </div>
                     <span class="countdown-separator text-neon-cyan text-xl sm:text-2xl font-light animate-pulse">:</span>
                     <div class="countdown-block">
-                        <span id="countdown-seconds" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white">00</span>
+                        <span id="countdown-seconds" class="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900">00</span>
                         <span class="font-mono text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest mt-1">Secs</span>
                     </div>
                 </div>
@@ -240,28 +240,28 @@
                             <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 flex items-center justify-center mb-3">
                                 <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
-                            <h4 class="font-display text-sm font-semibold text-white mb-1">Maintenance & Repair</h4>
+                            <h4 class="font-display text-sm font-semibold text-slate-900 mb-1">Maintenance & Repair</h4>
                             <p class="text-xs text-gray-500">Restoring dormant infrastructure</p>
                         </div>
                         <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
                             <div class="w-10 h-10 rounded-lg bg-neon-blue/10 flex items-center justify-center mb-3">
                                 <svg class="w-5 h-5 text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
                             </div>
-                            <h4 class="font-display text-sm font-semibold text-white mb-1">Sample Recovery</h4>
+                            <h4 class="font-display text-sm font-semibold text-slate-900 mb-1">Sample Recovery</h4>
                             <p class="text-xs text-gray-500">Transporting resource payloads</p>
                         </div>
                         <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
                             <div class="w-10 h-10 rounded-lg bg-neon-purple/10 flex items-center justify-center mb-3">
                                 <svg class="w-5 h-5 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             </div>
-                            <h4 class="font-display text-sm font-semibold text-white mb-1">Pavement Construction</h4>
+                            <h4 class="font-display text-sm font-semibold text-slate-900 mb-1">Pavement Construction</h4>
                             <p class="text-xs text-gray-500">Deploying traversable paths</p>
                         </div>
                         <div class="about-feature p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
                             <div class="w-10 h-10 rounded-lg bg-mars-400/10 flex items-center justify-center mb-3">
                                 <svg class="w-5 h-5 text-mars-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             </div>
-                            <h4 class="font-display text-sm font-semibold text-white mb-1">Science Investigation</h4>
+                            <h4 class="font-display text-sm font-semibold text-slate-900 mb-1">Science Investigation</h4>
                             <p class="text-xs text-gray-500">In-situ geological study</p>
                         </div>
                     </div>
@@ -280,7 +280,7 @@
                                 <svg class="w-6 h-6 text-purewhite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                             </div>
                             <div>
-                                <p class="font-display text-sm font-bold text-purewhite">LIVE CHALLENGE</p>
+                                <p class="font-display text-sm font-bold">LIVE CHALLENGE</p>
                                 <p class="font-mono text-[10px] text-neon-cyan">MACE KOTHAMANGALAM 2026</p>
                             </div>
                         </div>
@@ -314,7 +314,7 @@
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-6">
                             <span class="font-mono text-[10px] text-neon-cyan tracking-widest">STAGE 2</span>
                         </div>
-                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">
                             On-Site Finals (Field Competition)
                         </h3>
                         <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
@@ -364,7 +364,7 @@
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-purple/30 bg-neon-purple/5 mb-6">
                             <span class="font-mono text-[10px] text-neon-purple tracking-widest">STAGE 1</span>
                         </div>
-                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">
                             Online Qualification Round
                         </h3>
                         <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
@@ -427,7 +427,7 @@
                     <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
                         <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
                             <span class="font-mono text-xs text-neon-cyan tracking-widest">PHASE 01</span>
-                            <h3 class="font-display text-xl font-bold text-white mt-2">Registration Opens</h3>
+                            <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Registration Opens</h3>
                             <p class="text-gray-400 mt-2 text-sm">Teams from across Asia and the world begin registering. Submit your preliminary designs and team profiles.</p>
                             <span class="font-mono text-sm text-mars-300 mt-2 inline-block">July 2026</span>
                         </div>
@@ -445,7 +445,7 @@
                         </div>
                         <div class="md:w-1/2 md:pl-12 pl-12">
                             <span class="font-mono text-xs text-neon-blue tracking-widest">PHASE 02</span>
-                            <h3 class="font-display text-xl font-bold text-white mt-2">Preliminary Design Review</h3>
+                            <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Preliminary Design Review</h3>
                             <p class="text-gray-400 mt-2 text-sm">Submit System Design Papers and preliminary rover specifications for expert panel review.</p>
                             <span class="font-mono text-sm text-mars-300 mt-2 inline-block">September 2026</span>
                         </div>
@@ -455,7 +455,7 @@
                     <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
                         <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
                             <span class="font-mono text-xs text-neon-purple tracking-widest">PHASE 03</span>
-                            <h3 class="font-display text-xl font-bold text-white mt-2">Critical Design Review</h3>
+                            <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Critical Design Review</h3>
                             <p class="text-gray-400 mt-2 text-sm">Teams present detailed designs, testing results, and final rover specifications to judges.</p>
                             <span class="font-mono text-sm text-mars-300 mt-2 inline-block">November 2026</span>
                         </div>
@@ -473,7 +473,7 @@
                         </div>
                         <div class="md:w-1/2 md:pl-12 pl-12">
                             <span class="font-mono text-xs text-mars-300 tracking-widest">PHASE 04</span>
-                            <h3 class="font-display text-xl font-bold text-white mt-2">The Grand Challenge</h3>
+                            <h3 class="font-display text-xl font-bold text-slate-900 mt-2">The Grand Challenge</h3>
                             <p class="text-gray-400 mt-2 text-sm">On-field competition at MACE Kothamangalam. Rovers face real Mars-simulated terrain tasks.</p>
                             <span class="font-mono text-sm text-mars-300 mt-2 inline-block">January 2027</span>
                         </div>
@@ -501,7 +501,7 @@
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent to-space-950/50"></div>
                     </div>
                     <div class="p-8 sm:p-12 flex flex-col justify-center">
-                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-4">
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
                             MACE Kothamangalam
                         </h3>
                         <p class="text-gray-300 text-lg mb-2">Mar Athanasius College of Engineering</p>
@@ -513,7 +513,7 @@
                                     <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-white text-sm">Strategic Location</p>
+                                    <p class="font-semibold text-slate-900 text-sm">Strategic Location</p>
                                     <p class="text-xs text-gray-500">45 km from Kochi International Airport, nestled in the foothills of Western Ghats</p>
                                 </div>
                             </div>
@@ -522,7 +522,7 @@
                                     <svg class="w-5 h-5 text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-white text-sm">World-Class Facilities</p>
+                                    <p class="font-semibold text-slate-900 text-sm">World-Class Facilities</p>
                                     <p class="text-xs text-gray-500">Custom Mars-simulated test arena with diverse terrain features</p>
                                 </div>
                             </div>
@@ -531,7 +531,7 @@
                                     <svg class="w-5 h-5 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </div>
                                 <div>
-                                    <p class="font-semibold text-white text-sm">Rich Heritage</p>
+                                    <p class="font-semibold text-slate-900 text-sm">Rich Heritage</p>
                                     <p class="text-xs text-gray-500">One of the premier engineering institutions in Kerala, est. 1961</p>
                                 </div>
                             </div>
@@ -561,13 +561,13 @@
             <div class="flex gap-2 justify-center mb-16">
                 <div class="sponsor-card p-8 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-h-[120px]">
                     <div class="text-center">
-                        <p class="font-display text-sm font-bold text-white tracking-wider">RISA</p>
+                        <p class="font-display text-sm font-bold text-slate-900 tracking-wider">RISA</p>
                         <p class="font-mono text-[10px] text-gray-500 mt-1">organising community</p>
                     </div>
                 </div>
                 <div class="sponsor-card p-8 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-h-[120px]">
                     <div class="text-center">
-                        <p class="font-display text-sm font-bold text-white tracking-wider">MACE</p>
+                        <p class="font-display text-sm font-bold text-slate-900 tracking-wider">MACE</p>
                         <p class="font-mono text-[10px] text-gray-500 mt-1">Host Institution</p>
                     </div>
                 </div>
@@ -599,21 +599,21 @@
                         <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-cyan/5 border border-neon-cyan/20 flex items-center justify-center mb-4">
                             <span class="font-display text-2xl font-bold text-neon-cyan">01</span>
                         </div>
-                        <h4 class="font-display text-sm font-bold text-white mb-2">Form Your Team</h4>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Form Your Team</h4>
                         <p class="text-xs text-gray-500">Gather 5-30 university students passionate about robotics</p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue/20 to-neon-blue/5 border border-neon-blue/20 flex items-center justify-center mb-4">
                             <span class="font-display text-2xl font-bold text-neon-blue">02</span>
                         </div>
-                        <h4 class="font-display text-sm font-bold text-white mb-2">Submit Application</h4>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Submit Application</h4>
                         <p class="text-xs text-gray-500">Complete registration form with team and university details</p>
                     </div>
                     <div class="text-center">
                         <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple/20 to-neon-purple/5 border border-neon-purple/20 flex items-center justify-center mb-4">
                             <span class="font-display text-2xl font-bold text-neon-purple">03</span>
                         </div>
-                        <h4 class="font-display text-sm font-bold text-white mb-2">Start Building</h4>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Start Building</h4>
                         <p class="text-xs text-gray-500">Begin designing and building your Mars rover prototype</p>
                     </div>
                 </div>
@@ -633,6 +633,438 @@
                 </p>
             </div>
         </div>
+  
+    </section>
+
+    <!-- REGISTRATION JOURNEY SECTION -->
+    <section id="journey" class="relative z-30 py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16 sm:mb-20">
+                <p class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase mb-4">Your Path Forward</p>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                    What Happens After Registration?
+                </h2>
+                <p class="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                    From sign-up to the starting line — here's exactly how your journey unfolds after you register for ASRC 2026.
+                </p>
+            </div>
+
+            <!-- Interactive Stepper -->
+            <div class="max-w-3xl mx-auto">
+                <div class="stepper-container relative pl-6">
+                    <!-- Vertical track line (background) -->
+                    <div class="stepper-track"></div>
+                    <!-- Vertical progress line (animated fill) -->
+                    <div id="stepper-progress" class="stepper-progress" style="height: 0%;"></div>
+
+                    <!-- Step 1 -->
+                    <div class="stepper-step" data-step="1">
+                        <div class="stepper-dot border-blue-500/30 group-hover:border-blue-500">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Registration</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Submit your team details and pay the registration fee through the official ASRC portal. All team members must be enrolled university students.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="stepper-step" data-step="2">
+                        <div class="stepper-dot border-indigo-500/30 group-hover:border-indigo-500">
+                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Email Confirmation</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">You'll receive an email confirmation with your unique team ID, login credentials, and next steps within 48 hours of registration.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="stepper-step" data-step="3">
+                        <div class="stepper-dot border-blue-500/30 group-hover:border-blue-500">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Team Verification</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Our committee verifies student IDs, institutional affiliations, and team composition to ensure eligibility compliance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="stepper-step" data-step="4">
+                        <div class="stepper-dot border-purple-500/30 group-hover:border-purple-500">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Access to Dashboard</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Once verified, your team gains access to the ASRC team dashboard where you can manage members, track deadlines, and view announcements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="stepper-step" data-step="5">
+                        <div class="stepper-dot border-orange-500/30 group-hover:border-orange-500">
+                            <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Submission Portal Opens</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Upload your System Design Document (SDD), video demonstrations, and technical proposals through the secure submission portal.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="stepper-step" data-step="6">
+                        <div class="stepper-dot border-indigo-500/30 group-hover:border-indigo-500">
+                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Review</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">A panel of expert judges from academia and industry evaluates each submission based on innovation, feasibility, and technical excellence.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 7 -->
+                    <div class="stepper-step" data-step="7">
+                        <div class="stepper-dot border-blue-500/30 group-hover:border-blue-500">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Qualified Teams Announced</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Selected teams are publicly announced and notified via email with detailed instructions for the on-site competition phase.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 8 -->
+                    <div class="stepper-step" data-step="8">
+                        <div class="stepper-dot border-purple-500/30 group-hover:border-purple-500">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                        </div>
+                        <div class="stepper-content">
+                            <h3 class="font-display text-base sm:text-lg font-bold text-slate-800 mb-1">Final Confirmation</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">Qualified teams confirm participation, complete travel logistics, and prepare their rovers for the live competition at MACE Kothamangalam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION OVERVIEW SECTION -->
+    <section id="mission" class="relative z-30 py-24 sm:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Explore. Innovate. Perform.</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 uppercase">
+                    Mission Overview
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6">
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        The Asian Rover Challenge (AsRC) 2026 simulates the challenges of future planetary exploration through a series of realistic engineering missions inspired by lunar and Martian expeditions.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed">
+                        Teams must demonstrate the capabilities of their rover by completing multidisciplinary tasks that test mobility, autonomy, scientific investigation, robotic manipulation, and systems integration.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed font-medium text-neon-cyan">
+                        Each mission is designed to evaluate how effectively a rover can operate in a demanding extraterrestrial environment while maintaining reliability, precision, and efficiency under real-time conditions.
+                    </p>
+                </div>
+
+                <!-- Right Highlight Box -->
+                <div class="lg:col-span-5 bg-space-50 rounded-2xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-neon-cyan to-neon-blue"></div>
+                    <h3 class="font-display text-xl font-bold text-gray-800 mb-4 flex items-center gap-3 pl-2">
+                        Competition Philosophy
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed text-sm mb-4 pl-2">
+                        Modern planetary exploration requires more than a capable robot—it demands a complete engineering solution. AsRC challenges teams to design rovers that combine mechanical innovation, intelligent software, robust electronics, and effective operational strategies into a single, mission-ready system.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed text-sm pl-2">
+                        Success depends not only on completing tasks but on demonstrating sound engineering principles, safety, teamwork, and problem-solving under competition conditions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPETITION STRUCTURE SECTION -->
+    <section id="structure" class="relative z-30 py-24 sm:py-32 bg-space-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-purple tracking-[0.3em] uppercase">Two Primary Stages</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 uppercase">
+                    Competition Structure
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-purple to-neon-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Qualification Round -->
+                <div class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-neon-cyan/50 hover:shadow-[0_8px_30px_rgba(37,99,235,0.06)] transition-all duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-blue-50/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-gray-800 mb-3">Qualification Round</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Teams submit the required technical deliverables, including engineering documentation and supporting materials. Submissions are evaluated by the judging panel to determine eligibility for the final competition.
+                    </p>
+                </div>
+
+                <!-- Final Competition -->
+                <div class="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-neon-purple/50 hover:shadow-[0_8px_30px_rgba(109,40,217,0.06)] transition-all duration-300">
+                    <div class="w-14 h-14 rounded-xl bg-purple-50/80 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-7 h-7 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-gray-800 mb-3">Final Competition</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Qualified teams compete on-site by completing a series of simulated planetary exploration missions that evaluate rover performance, system reliability, technical design, and operational capability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUIREMENTS SECTION -->
+    <section id="requirements" class="relative z-30 py-24 sm:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-orange tracking-[0.3em] uppercase">Engineering & Team Standards</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 uppercase">
+                    Requirements
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-orange to-neon-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Rover Requirements -->
+                <div class="bg-space-50 rounded-2xl p-8 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center gap-4 mb-6 pb-6 border-b border-slate-200">
+                        <div class="w-12 h-12 rounded-lg bg-orange-50 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-neon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-lg font-bold text-gray-800">Rover Requirements</h3>
+                            <p class="text-gray-500 text-xs mt-0.5">Technical compliance specifications</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-orange mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Maximum dimensions & weight limitations</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-orange mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Power system & communication regulations</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-orange mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Mobility & control systems requirements</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-orange mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Safety mechanisms & Emergency stop functionality</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-orange mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Electrical safety & component compliance</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8 pt-6 border-t border-slate-200">
+                        <p class="text-xs text-gray-500 italic">Complete engineering specifications are detailed in the official rulebook.</p>
+                    </div>
+                </div>
+
+                <!-- Team Requirements -->
+                <div class="bg-space-50 rounded-2xl p-8 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div class="flex items-center gap-4 mb-6 pb-6 border-b border-slate-200">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-lg font-bold text-gray-800">Team Requirements</h3>
+                            <p class="text-gray-500 text-xs mt-0.5">Administrative & eligibility criteria</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-blue mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Meet institutional eligibility criteria</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-blue mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Register within official timelines</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-blue mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Nominate a Team Leader & Faculty Advisor</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-blue mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Maintain required student composition</span>
+                        </li>
+                        <li class="flex items-start gap-3 group">
+                            <svg class="w-5 h-5 text-neon-blue mt-0.5 shrink-0 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-gray-300 text-sm">Submit technical deliverables before deadlines</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION CATEGORIES SECTION -->
+    <section id="mission-categories" class="relative z-30 py-24 sm:py-32 bg-space-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 section-header">
+                <span class="font-mono text-xs text-neon-purple tracking-[0.3em] uppercase block mb-4">Mission Goals</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 uppercase text-slate-900">
+                    Mission Categories
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-purple to-neon-orange mx-auto rounded-full mb-8"></div>
+                <p class="text-gray-500 text-lg leading-relaxed">
+                    Teams will be evaluated across five distinct mission categories, each designed to test specific engineering, scientific, and operational capabilities.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Autonomous Navigation -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:border-neon-purple/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center mb-6 shadow-sm border border-purple-100 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-800 mb-3 group-hover:text-neon-purple transition-colors">Autonomous Navigation</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Navigate through a simulated planetary terrain while avoiding obstacles, planning efficient routes, and operating with minimal human intervention. This mission evaluates localization, path planning, autonomous decision-making, and overall mobility performance.
+                    </p>
+                </div>
+
+                <!-- Equipment Servicing -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:border-neon-blue/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-6 shadow-sm border border-blue-100 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-800 mb-3 group-hover:text-neon-blue transition-colors">Equipment Servicing</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Perform precision manipulation tasks using robotic arms and end-effectors to interact with mission equipment. Teams must demonstrate accurate control, dexterity, and reliable operation while servicing simulated infrastructure and scientific instruments.
+                    </p>
+                </div>
+
+                <!-- Science Exploration -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:border-neon-cyan/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-50 flex items-center justify-center mb-6 shadow-sm border border-cyan-100 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-800 mb-3 group-hover:text-neon-cyan transition-colors">Science Exploration</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Collect, transport, and analyze simulated planetary samples to investigate the environment and identify scientifically significant findings. This mission assesses sampling techniques, onboard science systems, and data interpretation.
+                    </p>
+                </div>
+
+                <!-- Settlement Operations -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 hover:border-neon-orange/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-orange-50 flex items-center justify-center mb-6 shadow-sm border border-orange-100 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-neon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-800 mb-3 group-hover:text-neon-orange transition-colors">Settlement Operations</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Support the development of a sustainable extraterrestrial habitat by completing construction and infrastructure-related tasks. Teams must demonstrate the ability to assist future human missions through engineering solutions that enable long-term planetary settlement.
+                    </p>
+                </div>
+
+                <!-- Mission Management -->
+                <div class="md:col-span-2 lg:col-span-2 bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-800/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center mb-6 shadow-sm border border-slate-100 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-slate-800 mb-3 group-hover:text-slate-900 transition-colors">Mission Management</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Operate the rover through a professional mission control workflow while demonstrating effective planning, communication, situational awareness, and decision-making. This mission evaluates the team's ability to manage mission operations, monitor rover health, respond to unexpected challenges, and coordinate efficiently under time constraints. Emphasis is placed on operational strategy, teamwork, system reliability, and adherence to established mission procedures, reflecting the responsibilities of real-world space mission control teams.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CODE OF CONDUCT SECTION -->
+    <section id="conduct" class="relative z-30 py-24 sm:py-32 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-neon-cyan/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
+                            <div class="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100">
+                                <svg class="w-8 h-8 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>
+                            <div>
+                                <h2 class="font-display text-3xl font-bold text-gray-800 mb-2">Code of Conduct</h2>
+                                <p class="text-gray-400 text-sm">All participants are expected to uphold the values of professionalism, integrity, and respect.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-x-12 gap-y-4 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                                <span class="text-gray-300 text-sm">Respect fellow competitors and officials</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                                <span class="text-gray-300 text-sm">Follow judge instructions</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                                <span class="text-gray-300 text-sm">Avoid unsportsmanlike behavior</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                                <span class="text-gray-300 text-sm">Protect competition facilities</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                                <span class="text-gray-300 text-sm">Maintain academic and professional integrity</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                                <span class="text-gray-300 text-sm">Follow all event policies</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-red-50 border border-red-100 rounded-2xl p-6 text-center">
+                            <p class="text-red-800 font-semibold mb-1">Violations may result in warnings, penalties, or disqualification.</p>
+                            <p class="text-red-600/80 text-xs">Please ensure the Official rulebook is adhered to and followed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Competition Resources -->
+            <div class="mt-24 text-center">
+                <p class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase mb-6">Competition Resources</p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#" target="_blank" class="group inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-200 bg-white hover:border-neon-cyan/40 hover:shadow-sm transition-all duration-300">
+                        <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <span class="font-display text-xs text-gray-800 tracking-wider group-hover:text-neon-cyan transition-colors">RULEBOOK & GUIDELINES</span>
+                     </a>
+                     <a href="#" target="_blank" class="group inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-200 bg-white hover:border-neon-purple/40 hover:shadow-sm transition-all duration-300">
+                         <svg class="w-5 h-5 text-neon-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+                         <span class="font-display text-xs text-gray-800 tracking-wider group-hover:text-neon-purple transition-colors">RESOURCE DRIVE</span>
+                     </a>
+                     <a href="#" target="_blank" class="group inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-200 bg-white hover:border-neon-orange/40 hover:shadow-sm transition-all duration-300">
+                         <svg class="w-5 h-5 text-neon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                         <span class="font-display text-xs text-gray-800 tracking-wider group-hover:text-neon-orange transition-colors">FAQ</span>
+                     </a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- FOOTER -->
@@ -644,7 +1076,7 @@
                     <div class="flex items-center gap-3 mb-6">
                         <img src="assets/images/logo.png" alt="ASRC Logo" class="h-10 w-auto">
                         <div>
-                            <p class="font-display text-sm font-bold text-white leading-none tracking-wider">ASIAN ROVER</p>
+                            <p class="font-display text-sm font-bold text-slate-900 leading-none tracking-wider">ASIAN ROVER</p>
                             <p class="font-display text-xs text-neon-cyan tracking-[0.25em]">CHALLENGE 2026</p>
                         </div>
                     </div>
@@ -661,7 +1093,7 @@
                     </div>
                     
                     <div class="mt-8">
-                        <p class="font-display text-xs font-bold text-white tracking-wider mb-3">SUPPORTED BY</p>
+                        <p class="font-display text-xs font-bold text-slate-900 tracking-wider mb-3">SUPPORTED BY</p>
                         <div class="flex items-center gap-4">
                             <a href="https://mace.ac.in" target="_blank" class="block transition-transform hover:scale-105">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyF91oEO_gPfTdEySx3Sjma-KdiVgl5k-SsI_r-FD_A&s" alt="MACE" class="h-10 w-auto rounded">
@@ -672,7 +1104,7 @@
                 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">QUICK LINKS</h4>
+                    <h4 class="font-display text-sm font-bold text-slate-900 tracking-wider mb-6">QUICK LINKS</h4>
                     <ul class="space-y-3">
                         <li><a href="#about" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">About ASRC</a></li>
                         <li><a href="#challenges" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">ASRC Challenge</a></li>
@@ -684,7 +1116,7 @@
                 
                 <!-- Contact -->
                 <div>
-                    <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">CONTACT</h4>
+                    <h4 class="font-display text-sm font-bold text-slate-900 tracking-wider mb-6">CONTACT</h4>
                     <ul class="space-y-3">
                         <li>
                             <a href="mailto:contact@roverchallenge.org" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
@@ -707,7 +1139,7 @@
                     </ul>
                     <br>
                     <div>
-                        <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">Pages</h4>
+                        <h4 class="font-display text-sm font-bold text-slate-900 tracking-wider mb-6">Pages</h4>
                         <ul class="space-y-3">
                             <li><a href="#home" class="text-gray-500 text-sm hover:text-neon-cyan transition-colors">Home</a></li>
 
