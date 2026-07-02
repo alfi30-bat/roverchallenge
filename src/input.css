@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.video-item {
+    transform: scale(0.7);
+    opacity: 0.4;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, filter 0.5s ease-out;
+    filter: grayscale(80%);
+}
+
+.video-item.active {
+    transform: scale(1);
+    opacity: 1;
+    filter: grayscale(0%);
+    z-index: 10;
+}
