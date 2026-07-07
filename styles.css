@@ -212,7 +212,80 @@ body.menu-open {
 .mobile-menu-overlay.open {
     transform: translateX(0);
 }
+/* --- Video Gallery: 3D Card Transition (adapted for 16:9 YouTube embeds) --- */
+.carousel-viewport {
+    perspective: 1400px;
+    overflow: visible;
+}
 
+.video-item-3d {
+    position: absolute;
+    width: min(78vw, 900px);
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #0f172a;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.7s ease, box-shadow 0.7s ease;
+    will-change: transform, opacity;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+}
+
+.video-item-3d .ambient-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, var(--rgba-cyan-30) 0%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.video-item-3d.prev {
+    transform: translateX(-56%) scale(0.8) rotateY(12deg);
+    opacity: 0.35;
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.video-item-3d.active {
+    transform: translateX(0) scale(1) rotateY(0deg);
+    opacity: 1;
+    z-index: 30;
+    pointer-events: auto;
+    box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.35), 0 0 40px -5px var(--rgba-cyan-20);
+}
+
+.video-item-3d.active .ambient-glow {
+    opacity: 1;
+}
+
+.video-item-3d.next {
+    transform: translateX(56%) scale(0.8) rotateY(-12deg);
+    opacity: 0.35;
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.video-item-3d.hidden-card {
+    opacity: 0;
+    transform: translateX(0) scale(0.7);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .video-item-3d {
+        width: 92vw;
+    }
+    .video-item-3d.prev,
+    .video-item-3d.next {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
 /* --- Preloader --- */
 #preloader {
     transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -997,3 +1070,14 @@ body::before {
         transform: rotate(360deg);
     }
 }
+
+/* --- Video Gallery Horizontal Fixes --- */
+.video-item-horizontal iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
