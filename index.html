@@ -7,7 +7,7 @@
     <title>Asian Rover Challenge 2026 | MACE Kothamangalam</title>
     <meta name="description"
         content="Asian Rover Challenge 2026 - International Space Robotics Competition hosted at MACE Kothamangalam. Design, build, and operate next-generation Mars rovers.">
-
+<link rel="icon" type="image/png" href="assets/images/logo.png">
     <!-- Tailwind CSS (built) -->
     <link rel="stylesheet" href="dist/output.css">
 
@@ -366,43 +366,35 @@
     </section>
 
     <!-- VIDEO GALLERY SECTION -->
-    <section id="video-gallery" class="relative z-30 bg-white max-[400px]:py-12 py-24 sm:py-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+
+<section id="video-gallery" class="relative z-30 bg-white" style="height: 100vh;">
+    <div class="video-gallery-wrapper w-full h-full flex flex-col items-center justify-center overflow-hidden">
+        <div class="w-full flex-shrink-0 mb-8 mt-16">
             <div class="text-center section-header">
                 <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Visual Journey</span>
-                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-slate-900">
-                    EXPLORE <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">INNOVATION</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-2 text-slate-900">
+                    EXPLORE <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">INNOVATION</span>
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
             </div>
         </div>
 
-        <div class="video-gallery-container relative h-screen w-full flex items-center">
-            <div class="video-track flex gap-8">
-                <!-- Video 1 -->
-                <div
-                    class="video-item shrink-0 w-[90vw] h-auto md:w-auto md:h-[70vh] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900 flex items-center justify-center transition-all duration-500 ease-out">
-                    <div id="yt-player-1" data-video-id="O0FOzPaF9oY" class="w-full h-full pointer-events-auto"></div>
-                </div>
-                <!-- Video 2 -->
-                <div
-                    class="video-item shrink-0 w-[90vw] h-auto md:w-auto md:h-[70vh] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900 flex items-center justify-center transition-all duration-500 ease-out">
-                    <div id="yt-player-2" data-video-id="i6gLlENt6YU" class="w-full h-full pointer-events-auto"></div>
-                </div>
-                <!-- Video 3 -->
-                <div
-                    class="video-item shrink-0 w-[90vw] h-auto md:w-auto md:h-[70vh] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900 flex items-center justify-center transition-all duration-500 ease-out">
-                    <div id="yt-player-3" data-video-id="C98zKFM3Vf4" class="w-full h-full pointer-events-auto"></div>
-                </div>
-                <!-- Video 4 -->
-                <div
-                    class="video-item shrink-0 w-[90vw] h-auto md:w-auto md:h-[70vh] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900 flex items-center justify-center transition-all duration-500 ease-out">
-                    <div id="yt-player-4" data-video-id="qRwe0EjqWpA" class="w-full h-full pointer-events-auto"></div>
-                </div>
+        <div class="video-gallery-container flex items-center w-max h-[65vh] px-[calc(50vw-(min(39vw,450px)+1rem))] sm:px-[calc(50vw-(min(39vw,450px)+2rem))]">
+            <div class="video-item-horizontal w-[min(78vw,900px)] aspect-[16/9] mx-4 sm:mx-8 rounded-2xl overflow-hidden bg-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.15)] relative flex-shrink-0" data-video-id="kJ3XYl8TUrw">
+                <div id="yt-player-1" class="w-full h-full"></div>
+            </div>
+            <div class="video-item-horizontal w-[min(78vw,900px)] aspect-[16/9] mx-4 sm:mx-8 rounded-2xl overflow-hidden bg-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.15)] relative flex-shrink-0" data-video-id="i6gLlENt6YU">
+                <div id="yt-player-2" class="w-full h-full"></div>
+            </div>
+            <div class="video-item-horizontal w-[min(78vw,900px)] aspect-[16/9] mx-4 sm:mx-8 rounded-2xl overflow-hidden bg-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.15)] relative flex-shrink-0" data-video-id="C98zKFM3Vf4">
+                <div id="yt-player-3" class="w-full h-full"></div>
+            </div>
+            <div class="video-item-horizontal w-[min(78vw,900px)] aspect-[16/9] mx-4 sm:mx-8 rounded-2xl overflow-hidden bg-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.15)] relative flex-shrink-0" data-video-id="qRwe0EjqWpA">
+                <div id="yt-player-4" class="w-full h-full"></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Prize Pool Section -->
     <div
