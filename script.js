@@ -670,13 +670,14 @@ window.onYouTubeIframeAPIReady = function() {
     ytReady = true;
     const playerDivs = document.querySelectorAll('[id^="yt-player-"]');
     playerDivs.forEach((div, index) => {
-        const videoId = div.getAttribute('data-video-id');
+        const card = div.closest('.video-item-horizontal');
+        const videoId = card ? card.getAttribute('data-video-id') : div.getAttribute('data-video-id');
         const player = new YT.Player(div.id, {
             height: '100%',
             width: '100%',
             videoId: videoId,
             playerVars: {
-                'rel': 0, // Disable recommendations
+                'rel': 0,
                 'playsinline': 1,
                 'modestbranding': 1
             },
@@ -688,31 +689,13 @@ window.onYouTubeIframeAPIReady = function() {
         ytPlayers.push(player);
     });
 };
-
 function onPlayerReady(event) {
     if (typeof event.target.setPlaybackQuality === 'function') {
         event.target.setPlaybackQuality('medium'); // 360p
     }
     
-    // Fail-safe: if player finished loading after user scrolled away, pause it.
-    try {
-        const iframe = event.target.getIframe();
-        if (iframe) {
-            const item = iframe.closest('.video-item');
-            if (!item || !item.classList.contains('active')) {
-                event.target.pauseVideo();
-            } else {
-                const gallery = document.querySelector('.video-gallery-container');
-                if (gallery) {
-                    const rect = gallery.getBoundingClientRect();
-                    // If gallery is out of viewport
-                    if (rect.top > window.innerHeight || rect.bottom < 0) {
-                        event.target.pauseVideo();
-                    }
-                }
-            }
-        }
-    } catch(e) {}
+    // No need to pause on ready, YouTube players don't autoplay by default.
+    // ScrollTrigger will handle playing when in viewport.
 }
 
 function onPlayerStateChange(event) {
@@ -740,91 +723,67 @@ function pauseAllVideos() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 2. Setup GSAP ScrollTrigger
-    const galleryContainer = document.querySelector('.video-gallery-container');
-    const track = document.querySelector('.video-track');
-    const items = gsap.utils.toArray('.video-item');
+    const gallerySection = document.getElementById('video-gallery');
+    const container = document.querySelector('.video-gallery-container');
+    const cards = gsap.utils.toArray('.video-item-horizontal');
 
-    if (!galleryContainer || !track || items.length === 0) return;
+    if (!gallerySection || !container || cards.length === 0) return;
 
-    function getStartX() {
-        if (!items.length) return 0;
-        return (window.innerWidth - items[0].offsetWidth) / 2 - items[0].offsetLeft;
-    }
-
-    function getEndX() {
-        if (!items.length) return 0;
-        const lastItem = items[items.length - 1];
-        return (window.innerWidth - lastItem.offsetWidth) / 2 - lastItem.offsetLeft;
-    }
-
-    const tween = gsap.fromTo(track, 
-        { x: getStartX },
-        { x: getEndX, ease: "none" }
-    );
-
-    ScrollTrigger.create({
-        trigger: galleryContainer,
-        start: "top top",
-        end: () => `+=${Math.abs(getStartX() - getEndX())}`,
-        pin: true,
-        animation: tween,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-            // Find which video is closest to center
-            const viewportCenter = window.innerWidth / 2;
-            let closestItem = null;
-            let minDistance = Infinity;
-
-            items.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                const itemCenter = rect.left + rect.width / 2;
-                const distance = Math.abs(viewportCenter - itemCenter);
-                
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestItem = item;
-                }
-            });
-
-            items.forEach((item, index) => {
-                if (item === closestItem) {
-                    if (!item.classList.contains('active')) {
-                        item.classList.add('active');
-                        // Autoplay the active video
-                        if (ytReady && ytPlayers[index] && typeof ytPlayers[index].playVideo === 'function') {
-                            // Some browsers may block this if unmuted, but we will try
-                            ytPlayers[index].playVideo();
-                        }
-                    }
-                } else {
-                    if (item.classList.contains('active')) {
-                        item.classList.remove('active');
-                        // Pause the inactive video
-                        if (ytReady && ytPlayers[index] && typeof ytPlayers[index].pauseVideo === 'function') {
-                            ytPlayers[index].pauseVideo();
-                        }
-                    }
-                }
-            });
-        },
-        onLeave: () => pauseAllVideos(),
-        onLeaveBack: () => pauseAllVideos()
+    // Horizontal Scroll
+    let scrollWidth = container.scrollWidth - window.innerWidth;
+    let scrollTween = gsap.to(container, {
+        x: -scrollWidth,
+        ease: "none",
+        scrollTrigger: {
+            trigger: gallerySection,
+            pin: true,
+            scrub: true,
+            end: () => "+=" + scrollWidth,
+        }
     });
 
-    // 3. Robust fail-safe to ensure videos are paused when section is not in view
+    // Autoplay when centered in viewport
+    cards.forEach((card, i) => {
+        ScrollTrigger.create({
+            trigger: card,
+            containerAnimation: scrollTween,
+            start: "left 75%", 
+            end: "right 25%",
+            onEnter: () => {
+                const player = ytPlayers[i];
+                if (ytReady && player && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                }
+            },
+            onLeave: () => {
+                const player = ytPlayers[i];
+                if (ytReady && player && typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
+            },
+            onEnterBack: () => {
+                const player = ytPlayers[i];
+                if (ytReady && player && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                }
+            },
+            onLeaveBack: () => {
+                const player = ytPlayers[i];
+                if (ytReady && player && typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
+            }
+        });
+    });
+
+    // Pause all when section completely out of view
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                pauseAllVideos();
-            }
+            if (!entry.isIntersecting) pauseAllVideos();
         });
     }, { threshold: 0 });
 
-    if (galleryContainer) {
-        observer.observe(galleryContainer);
-    }
+    observer.observe(gallerySection);
 });
 
 // ========== PRIZE POOL ANIMATION ==========
