@@ -1070,14 +1070,3 @@ body::before {
         transform: rotate(360deg);
     }
 }
-
-/* --- Video Gallery Horizontal Fixes --- */
-.video-item-horizontal iframe {
-    width: 100% !important;
-    height: 100% !important;
-    border: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
