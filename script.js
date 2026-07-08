@@ -374,6 +374,7 @@ function initAnimations() {
 
     // Dynamic Text Animations
     initTextAnimations();
+   initVideoGallery();
 }
 
 // ========== COUNTDOWN TIMER ==========
