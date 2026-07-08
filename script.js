@@ -741,9 +741,10 @@ function pauseAllVideos() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const gallerySection = document.getElementById('video-gallery');
+    const pinTarget = document.getElementById('video-gallery-pin');
     const cards = gsap.utils.toArray('.video-item-3d');
 
-    if (!gallerySection || cards.length === 0) return;
+    if (!gallerySection || !pinTarget || cards.length === 0) return;
 
     let activeIndex = 0;
 
@@ -772,13 +773,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setActiveCard(0);
 
-    // No pin here — CSS `sticky` on the inner wrapper already keeps it on screen.
-    // Progress is measured against the viewport CENTER, not the top.
     ScrollTrigger.create({
         id: 'video-gallery-scroll',
         trigger: gallerySection,
-        start: 'top center',
-        end: 'bottom center',
+        start: 'top 20%',
+        end: 'bottom bottom',
+        pin: pinTarget,
+        pinSpacing: false,
+        anticipatePin: 1,
         scrub: 1,
         onUpdate: (self) => {
             const idx = Math.round(self.progress * (cards.length - 1));
