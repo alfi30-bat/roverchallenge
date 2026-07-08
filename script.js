@@ -657,6 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========== VIDEO GALLERY ANIMATION & YOUTUBE API ==========
+// ========== VIDEO GALLERY ANIMATION & YOUTUBE API ==========
 let ytPlayers = [];
 let ytReady = false;
 
@@ -689,12 +690,12 @@ window.onYouTubeIframeAPIReady = function() {
         ytPlayers.push(player);
     });
 };
+
 function onPlayerReady(event) {
     if (typeof event.target.setPlaybackQuality === 'function') {
         event.target.setPlaybackQuality('medium'); // 360p
     }
     
-    // Fail-safe: if player finished loading after user scrolled away, pause it.
     try {
         const iframe = event.target.getIframe();
         if (iframe) {
@@ -705,8 +706,10 @@ function onPlayerReady(event) {
                 const gallery = document.querySelector('.video-gallery-container');
                 if (gallery) {
                     const rect = gallery.getBoundingClientRect();
-                    // If gallery is out of viewport
-                    if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    // If active card loads while user is looking at the section, play it immediately
+                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                        event.target.playVideo();
+                    } else {
                         event.target.pauseVideo();
                     }
                 }
@@ -738,7 +741,9 @@ function pauseAllVideos() {
         } catch (e) {}
     });
 }
-document.addEventListener('DOMContentLoaded', () => {
+
+// Named initialization function to be safely called after GSAP plugins register
+function initVideoGallery() {
     const gallerySection = document.getElementById('video-gallery');
     const cards = gsap.utils.toArray('.video-item-3d');
 
@@ -769,14 +774,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Set initial layout state safely
     setActiveCard(0);
 
-ScrollTrigger.create({
+    ScrollTrigger.create({
         id: 'video-gallery-scroll',
         trigger: gallerySection,
-        start: 'top 80px', // Changed to match the sticky top-20 offset
+        start: 'top center',
         end: 'bottom bottom',
         scrub: 1,
+        onEnter: () => {
+            // Force active video to play when user scrolls into the section down
+            const player = ytPlayers[activeIndex];
+            if (ytReady && player && typeof player.playVideo === 'function') player.playVideo();
+        },
+        onEnterBack: () => {
+            // Force active video to play when user scrolls into the section up
+            const player = ytPlayers[activeIndex];
+            if (ytReady && player && typeof player.playVideo === 'function') player.playVideo();
+        },
         onUpdate: (self) => {
             const idx = Math.round(self.progress * (cards.length - 1));
             if (idx !== activeIndex) setActiveCard(idx);
@@ -784,6 +800,7 @@ ScrollTrigger.create({
         onLeave: () => pauseAllVideos(),
         onLeaveBack: () => pauseAllVideos()
     });
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) pauseAllVideos();
@@ -791,7 +808,7 @@ ScrollTrigger.create({
     }, { threshold: 0 });
 
     observer.observe(gallerySection);
-});
+}
 
 // ========== PRIZE POOL ANIMATION ==========
 document.addEventListener('DOMContentLoaded', () => {
