@@ -671,7 +671,7 @@ window.onYouTubeIframeAPIReady = function() {
     const playerDivs = document.querySelectorAll('[id^="yt-player-"]');
     playerDivs.forEach((div, index) => {
         const card = div.closest('.video-item-3d');
-        const videoId = card ? card.getAttribute('data-video-id') : div.getAttribute('data-video-id');
+        const videoId = div.getAttribute('data-video-id') || (card ? card.getAttribute('data-video-id') : null);
         const player = new YT.Player(div.id, {
             height: '100%',
             width: '100%',
