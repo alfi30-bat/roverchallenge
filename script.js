@@ -771,10 +771,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setActiveCard(0);
 
-    ScrollTrigger.create({
+ScrollTrigger.create({
         id: 'video-gallery-scroll',
         trigger: gallerySection,
-        start: 'top center',
+        start: 'top 80px', // Changed to match the sticky top-20 offset
         end: 'bottom bottom',
         scrub: 1,
         onUpdate: (self) => {
@@ -784,7 +784,6 @@ document.addEventListener('DOMContentLoaded', () => {
         onLeave: () => pauseAllVideos(),
         onLeaveBack: () => pauseAllVideos()
     });
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) pauseAllVideos();
