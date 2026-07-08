@@ -740,15 +740,33 @@ function pauseAllVideos() {
 }
 document.addEventListener('DOMContentLoaded', () => {
     const gallerySection = document.getElementById('video-gallery');
-    const pinTarget = document.getElementById('video-gallery-pin');
     const cards = gsap.utils.toArray('.video-item-3d');
 
-    if (!gallerySection || !pinTarget || cards.length === 0) return;
+    if (!gallerySection || cards.length === 0) return;
 
     let activeIndex = 0;
 
     function setActiveCard(newIndex) {
-        ...
+        activeIndex = ((newIndex % cards.length) + cards.length) % cards.length;
+        const prevIndex = (activeIndex - 1 + cards.length) % cards.length;
+        const nextIndex = (activeIndex + 1) % cards.length;
+
+        cards.forEach((card, i) => {
+            card.classList.remove('prev', 'active', 'next', 'hidden-card');
+            if (i === activeIndex) card.classList.add('active');
+            else if (i === prevIndex) card.classList.add('prev');
+            else if (i === nextIndex) card.classList.add('next');
+            else card.classList.add('hidden-card');
+
+            const player = ytPlayers[i];
+            if (ytReady && player) {
+                if (i === activeIndex && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                } else if (typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
+            }
+        });
     }
 
     setActiveCard(0);
@@ -756,11 +774,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTrigger.create({
         id: 'video-gallery-scroll',
         trigger: gallerySection,
-        start: 'top 20%',
+        start: 'top center',
         end: 'bottom bottom',
-        pin: pinTarget,
-        pinSpacing: false,
-        anticipatePin: 1,
         scrub: 1,
         onUpdate: (self) => {
             const idx = Math.round(self.progress * (cards.length - 1));
