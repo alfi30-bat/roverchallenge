@@ -740,10 +740,10 @@ function pauseAllVideos() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const galleryContainer = document.querySelector('.video-gallery-container');
+    const gallerySection = document.getElementById('video-gallery');
     const cards = gsap.utils.toArray('.video-item-3d');
 
-    if (!galleryContainer || cards.length === 0) return;
+    if (!gallerySection || cards.length === 0) return;
 
     let activeIndex = 0;
 
@@ -759,7 +759,6 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (i === nextIndex) card.classList.add('next');
             else card.classList.add('hidden-card');
 
-            // Play the active video, pause everything else
             const player = ytPlayers[i];
             if (ytReady && player) {
                 if (i === activeIndex && typeof player.playVideo === 'function') {
@@ -771,29 +770,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial state before scroll math kicks in
     setActiveCard(0);
 
-    // Allow clicking a peeking card to jump to it
-    cards.forEach((card, i) => {
-        card.addEventListener('click', () => {
-            if (card.classList.contains('prev') || card.classList.contains('next')) {
-                const targetScroll = ScrollTrigger.getById('video-gallery-scroll').start
-                    + (i === (activeIndex - 1 + cards.length) % cards.length ? -1 : 1)
-                    * (window.innerHeight * 0.9);
-                gsap.to(window, { scrollTo: { y: targetScroll }, duration: 0.8, ease: 'power2.inOut' });
-            }
-        });
-    });
-
+    // No pin here — CSS `sticky` on the inner wrapper already keeps it on screen.
+    // Progress is measured against the viewport CENTER, not the top.
     ScrollTrigger.create({
         id: 'video-gallery-scroll',
-        trigger: galleryContainer,
-        start: 'top top',
-        end: () => `+=${window.innerHeight * 0.9 * (cards.length - 1)}`,
-        pin: true,
+        trigger: gallerySection,
+        start: 'top center',
+        end: 'bottom center',
         scrub: 1,
-        invalidateOnRefresh: true,
         onUpdate: (self) => {
             const idx = Math.round(self.progress * (cards.length - 1));
             if (idx !== activeIndex) setActiveCard(idx);
@@ -802,16 +788,13 @@ document.addEventListener('DOMContentLoaded', () => {
         onLeaveBack: () => pauseAllVideos()
     });
 
-    // Fail-safe: pause everything once the gallery scrolls fully out of view
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                pauseAllVideos();
-            }
+            if (!entry.isIntersecting) pauseAllVideos();
         });
     }, { threshold: 0 });
 
-    observer.observe(galleryContainer);
+    observer.observe(gallerySection);
 });
 
 // ========== PRIZE POOL ANIMATION ==========
