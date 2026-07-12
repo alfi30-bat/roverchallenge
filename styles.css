@@ -275,7 +275,19 @@ body.menu-open {
     pointer-events: none;
     z-index: 0;
 }
-
+/* Video gallery sticky pin — explicit, build-independent */
+.video-gallery-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5rem;              /* matches top-20 */
+    height: calc(100vh - 5rem);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 @media (max-width: 768px) {
     .video-item-3d {
         width: 92vw;
