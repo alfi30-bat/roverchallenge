@@ -107,11 +107,10 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: clip;
+   
 }
 
 body {
-    overflow-x: clip;
     cursor: default;
     background-color: #ffffff;
     color: #0f172a;
