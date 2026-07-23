@@ -443,7 +443,7 @@
         </div>
     </div>
 
-    <!-- CHALLENGES SECTION -->
+  <!-- CHALLENGES SECTION -->
     <section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
         <!-- Mars terrain background parallax -->
         <div class="absolute inset-0 z-0">
@@ -453,66 +453,69 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-20 section-header">
-                <span class="font-mono text-xs text-mars-300 tracking-[0.3em] uppercase">The Competitions</span>
-                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                <span class="font-mono text-sm text-mars-300 tracking-[0.2em] uppercase font-semibold">The Competitions</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-white tracking-tight">
                     COMPETITION <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-mars-300 to-neon-orange">STRUCTURE</span>
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-mars-300 to-orange-400">STRUCTURE</span>
                 </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-mars-300 to-neon-orange mx-auto rounded-full"></div>
+                <div class="w-24 h-1 bg-gradient-to-r from-mars-300 to-orange-400 mx-auto rounded-full"></div>
             </div>
 
             <!-- Stage 1 Card (formerly ISDC) -->
-            <div class="challenge-card">
+            <div class="challenge-card mb-8">
                 <div
-                    class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
+                    class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md overflow-hidden shadow-2xl">
                     <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
                         <img src="assets/images/mars.jpeg" alt="Mars terrain"
                             class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-space-950 via-space-950/40 to-transparent"></div>
                     </div>
-                    <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2">
+                    <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2 flex flex-col justify-center">
                         <div
-                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-purple/30 bg-neon-purple/5 mb-6">
-                            <span class="font-mono text-[10px] text-neon-purple tracking-widest">STAGE 1</span>
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 mb-6 w-max">
+                            <span class="font-mono text-[11px] text-orange-400 tracking-widest font-semibold">STAGE 1</span>
                         </div>
-                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                        <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-4 tracking-tight">
                             Qualification Round
                         </h3>
-                        <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
+                        <p class="text-gray-300 leading-relaxed mb-8 max-w-xl text-base">
                             Teams submit the required technical deliverables, including engineering documentation and
                             supporting materials. Submissions are evaluated by the judging panel to determine
                             eligibility for the final competition.
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-neon-purple"></span>
+                        </p>
+                        
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>System Design Report</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-neon-cyan"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Video Presentation</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-mars-400"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Science Report</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Cost Analysis</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Settlement Design</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>3D CAD Model</span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
+
                         <a href="https://docs.google.com/document/d/1nAl5XEtAJQb5udgHfqcTJPMl98wXMcKey6zJIa9h5WI/edit?usp=drive_link"
                             target="_blank"
-                            class="inline-flex items-center gap-2 text-neon-purple font-display text-sm tracking-wider hover:gap-3 transition-all">
+                            class="inline-flex items-center gap-2 text-orange-400 font-semibold text-sm tracking-wider hover:text-orange-300 transition-colors w-max group">
                             VIEW GUIDELINES
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -520,50 +523,52 @@
                     </div>
                 </div>
             </div>
+
             <!-- Stage 2 Card -->
             <div class="challenge-card mb-12">
                 <div
-                    class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
-                    <div class="lg:col-span-3 p-8 sm:p-12">
+                    class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md overflow-hidden shadow-2xl">
+                    <div class="lg:col-span-3 p-8 sm:p-12 flex flex-col justify-center">
                         <div
-                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-6">
-                            <span class="font-mono text-[10px] text-neon-cyan tracking-widest">STAGE 2</span>
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 mb-6 w-max">
+                            <span class="font-mono text-[11px] text-blue-400 tracking-widest font-semibold">STAGE 2</span>
                         </div>
-                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                        <h3 class="text-2xl sm:text-3xl font-semibold text-white mb-4 tracking-tight">
                             On-Site Finals (Field Competition)
                         </h3>
-                        <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
+                        <p class="text-gray-300 leading-relaxed mb-8 max-w-xl text-base">
                             Qualified teams compete on-site by completing a series of simulated planetary exploration
                             missions that evaluate rover performance, system reliability, technical design, and
                             operational capability.
                         </p>
-                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-neon-cyan"></span>
+                        
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Maintenance & Repair</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-neon-blue"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Sample Recovery</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-neon-purple"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Pavement Construction</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-mars-400"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Science Investigation</span>
-                            </div>
-                            <div class="mission-tag">
-                                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span>Physical Operations</span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="lg:col-span-2 relative min-h-[300px]">
                         <img src="assets/images/teams.jpeg" alt="Teams working on rover"
                             class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute from-space-950/80 via-transparent to-transparent lg:bg-gradient-to-l">
+                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-space-950 via-space-950/40 to-transparent">
                         </div>
                     </div>
                 </div>
