@@ -1087,6 +1087,11 @@ body::before {
    (no Tailwind build dependency, uses existing
    root variables from the top of this file)
    ============================================ */
+/* ============================================
+   CHALLENGES / TIMELINE / CTA — plain CSS
+   (no Tailwind build dependency, uses existing
+   root variables from the top of this file)
+   ============================================ */
 
 .text-heading-dark   { color: var(--color-text-dark); }
 .text-body-muted     { color: var(--color-text-slate-600); }
@@ -1147,20 +1152,26 @@ body::before {
     transform: translateY(-4px);
 }
 
-/* Section heading gradient (visible 3-color gradient, not two shades of one hue) */
+/* Section heading gradient — same orange-500 to red-500 gradient as the $1200 prize pool number */
 .heading-gradient-structure {
-    background: linear-gradient(90deg, var(--color-neon-purple), var(--color-neon-cyan), var(--color-neon-orange));
+    background: linear-gradient(90deg, #f97316, #ef4444);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
 .underline-gradient-structure {
-    background: linear-gradient(90deg, var(--color-neon-purple), var(--color-neon-cyan), var(--color-neon-orange));
+    background: linear-gradient(90deg, #f97316, #ef4444);
 }
 
-/* Timeline recolor for light theme */
+/* Timeline recolor for light theme — bottom pulled in so the line ends at the
+   last dot's center instead of running past it under "Grand Challenge" text */
 .timeline-central-line {
     background: linear-gradient(to bottom, var(--color-neon-cyan), var(--color-neon-blue), var(--color-neon-purple));
+    top: 16px;
+    bottom: 90px;
+}
+@media (min-width: 768px) {
+    .timeline-central-line { bottom: 60px; }
 }
 .timeline-dot-shell {
     background: #ffffff;
@@ -1187,7 +1198,6 @@ body::before {
     text-decoration: none;
     overflow: hidden;
     transition: all 0.4s ease;
-    font-weight: 700;
 }
 .orange-cta-bg {
     position: absolute;
