@@ -745,11 +745,13 @@ function pauseAllVideos() {
 
 // Named initialization function to be safely called after GSAP plugins register
 function initVideoGallery() {
+    ScrollTrigger.config({ ignoreMobileResize: true }); // stop toolbar show/hide from re-firing resize recalculation
+
     const gallerySection = document.getElementById('video-gallery');
     const cards = gsap.utils.toArray('.video-item-3d');
 
     if (!gallerySection || cards.length === 0) return;
-
+ gallerySection.style.height = `${cards.length * 100 + 50}dvh`;
     let activeIndex = 0;
 
     function setActiveCard(newIndex) {
