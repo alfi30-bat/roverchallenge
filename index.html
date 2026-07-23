@@ -365,44 +365,93 @@
         </div>
     </section>
 
-    <!-- VIDEO GALLERY SECTION -->
-    <!-- VIDEO GALLERY SECTION -->
-    <section id="video-gallery" class="relative z-30 bg-white" style="height: 350vh;">
 
-        <div
-            class="video-gallery-sticky sticky top-20 h-[calc(100vh-5rem)] w-full flex flex-col items-center justify-center overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-                <div class="text-center section-header">
-                    <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Visual Journey</span>
-                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-2 text-slate-900">
-                        EXPLORE <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">INNOVATION</span>
-                    </h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
-                </div>
+    <!-- REGISTRATION SECTION -->
+    <section id="register" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 overflow-hidden">
+        <!-- Background effects -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-purple/5"></div>
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="section-header">
+                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Join the Mission</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-6xl font-bold mt-4 mb-6">
+                    REGISTER YOUR <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple">TEAM</span>
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-12">
+                    Ready to push the boundaries of space robotics? Assemble your team, design your rover, and compete
+                    against the brightest minds across the globe.
+                </p>
             </div>
 
-            <div
-                class="video-gallery-container carousel-viewport relative w-full h-[65vh] flex items-center justify-center">
-                <div class="video-item-3d" id="video-card-1">
-                    <div class="ambient-glow"></div>
-                    <div id="yt-player-1" data-video-id="kJ3XYl8TUrw" class="w-full h-full"></div>
+            <div class="register-card p-8 sm:p-12 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+                <div class="grid sm:grid-cols-3 gap-8 mb-10">
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-cyan/5 border border-neon-cyan/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-cyan">01</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Form Your Team</h4>
+                        <p class="text-xs text-gray-500">Gather 5-30 university students passionate about robotics</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue/20 to-neon-blue/5 border border-neon-blue/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-blue">02</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Submit Application</h4>
+                        <p class="text-xs text-gray-500">Complete registration form with team and university details</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple/20 to-neon-purple/5 border border-neon-purple/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-purple">03</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Start Building</h4>
+                        <p class="text-xs text-gray-500">Begin designing and building your Mars rover prototype</p>
+                    </div>
                 </div>
-                <div class="video-item-3d" id="video-card-2">
-                    <div class="ambient-glow"></div>
-                    <div id="yt-player-2" data-video-id="46jGX8zSaVI" class="w-full h-full"></div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://forms.gle/nY4rJCCZyVNwZzpb8" target="_blank"
+                        class="primary-cta w-full sm:w-auto group">
+                        <span class="cta-bg"></span>
+                        <span
+                            class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider">
+                            REGISTER FOR ASRC
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1XUFxdmGZ97QTnuXzFC8Az8aBT1X-bLBK" target="_blank"
+                        class="w-full sm:w-auto group inline-flex items-center justify-center px-8 py-4 bg-white border border-black text-black rounded hover:bg-gray-100 transition-colors">
+                        <span
+                            class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider">
+                            RULEBOOK & GUIDELINES
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </a>
                 </div>
-                <!--<div class="video-item-3d" id="video-card-3">
-                <div class="ambient-glow"></div>
-                <div id="yt-player-3" data-video-id="C98zKFM3Vf4" class="w-full h-full"></div>
-            </div>
-            <div class="video-item-3d" id="video-card-4">
-                <div class="ambient-glow"></div>
-                <div id="yt-player-4" data-video-id="qRwe0EjqWpA" class="w-full h-full"></div>
-            </div>-->
+
+                <p class="text-gray-600 text-xs mt-6 font-mono">
+                    Registration fee applies • For queries: <a href="mailto:contact@asrc.space"
+                        class="text-neon-cyan hover:underline">contact@asrc.space</a>
+                </p>
             </div>
 
         </div>
+
     </section>
 
     <!-- Prize Pool Section -->
@@ -732,95 +781,46 @@
             </div>
         </div>
     </section>
+    <!-- VIDEO GALLERY SECTION -->
+    <section id="video-gallery" class="relative z-30 bg-white" style="height: 350vh;">
 
-
-    <!-- REGISTRATION SECTION -->
-    <section id="register" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 overflow-hidden">
-        <!-- Background effects -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-purple/5"></div>
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="section-header">
-                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Join the Mission</span>
-                <h2 class="font-display text-3xl sm:text-4xl md:text-6xl font-bold mt-4 mb-6">
-                    REGISTER YOUR <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple">TEAM</span>
-                </h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-12">
-                    Ready to push the boundaries of space robotics? Assemble your team, design your rover, and compete
-                    against the brightest minds across the globe.
-                </p>
+        <div
+            class="video-gallery-sticky sticky top-20 h-[calc(100vh-5rem)] w-full flex flex-col items-center justify-center overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+                <div class="text-center section-header">
+                    <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Visual Journey</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-2 text-slate-900">
+                        EXPLORE <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">INNOVATION</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+                </div>
             </div>
 
-            <div class="register-card p-8 sm:p-12 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-                <div class="grid sm:grid-cols-3 gap-8 mb-10">
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-cyan/5 border border-neon-cyan/20 flex items-center justify-center mb-4">
-                            <span class="font-display text-2xl font-bold text-neon-cyan">01</span>
-                        </div>
-                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Form Your Team</h4>
-                        <p class="text-xs text-gray-500">Gather 5-30 university students passionate about robotics</p>
-                    </div>
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue/20 to-neon-blue/5 border border-neon-blue/20 flex items-center justify-center mb-4">
-                            <span class="font-display text-2xl font-bold text-neon-blue">02</span>
-                        </div>
-                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Submit Application</h4>
-                        <p class="text-xs text-gray-500">Complete registration form with team and university details</p>
-                    </div>
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple/20 to-neon-purple/5 border border-neon-purple/20 flex items-center justify-center mb-4">
-                            <span class="font-display text-2xl font-bold text-neon-purple">03</span>
-                        </div>
-                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Start Building</h4>
-                        <p class="text-xs text-gray-500">Begin designing and building your Mars rover prototype</p>
-                    </div>
+            <div
+                class="video-gallery-container carousel-viewport relative w-full h-[65vh] flex items-center justify-center">
+                <div class="video-item-3d" id="video-card-1">
+                    <div class="ambient-glow"></div>
+                    <div id="yt-player-1" data-video-id="kJ3XYl8TUrw" class="w-full h-full"></div>
                 </div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://forms.gle/nY4rJCCZyVNwZzpb8" target="_blank"
-                        class="primary-cta w-full sm:w-auto group">
-                        <span class="cta-bg"></span>
-                        <span
-                            class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider">
-                            REGISTER FOR ASRC
-                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </span>
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/1XUFxdmGZ97QTnuXzFC8Az8aBT1X-bLBK" target="_blank"
-                        class="w-full sm:w-auto group inline-flex items-center justify-center px-8 py-4 bg-white border border-black text-black rounded hover:bg-gray-100 transition-colors">
-                        <span
-                            class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider">
-                            RULEBOOK & GUIDELINES
-                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </span>
-                    </a>
+                <div class="video-item-3d" id="video-card-2">
+                    <div class="ambient-glow"></div>
+                    <div id="yt-player-2" data-video-id="46jGX8zSaVI" class="w-full h-full"></div>
                 </div>
-
-                <p class="text-gray-600 text-xs mt-6 font-mono">
-                    Registration fee applies • For queries: <a href="mailto:contact@asrc.space"
-                        class="text-neon-cyan hover:underline">contact@asrc.space</a>
-                </p>
+                <!--<div class="video-item-3d" id="video-card-3">
+                <div class="ambient-glow"></div>
+                <div id="yt-player-3" data-video-id="C98zKFM3Vf4" class="w-full h-full"></div>
+            </div>
+            <div class="video-item-3d" id="video-card-4">
+                <div class="ambient-glow"></div>
+                <div id="yt-player-4" data-video-id="qRwe0EjqWpA" class="w-full h-full"></div>
+            </div>-->
             </div>
 
         </div>
-
     </section>
+
+
 
 
     <!-- MISSION CATEGORIES SECTION -->
