@@ -1081,3 +1081,121 @@ body::before {
         transform: rotate(360deg);
     }
 }
+
+/* ============================================
+   CHALLENGES / TIMELINE / CTA — plain CSS
+   (no Tailwind build dependency, uses existing
+   root variables from the top of this file)
+   ============================================ */
+
+.text-heading-dark   { color: var(--color-text-dark); }
+.text-body-muted     { color: var(--color-text-slate-600); }
+
+/* Badges */
+.badge-purple {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 12px; border-radius: 9999px;
+    border: 1px solid rgba(109,40,217,0.25);
+    background: rgba(109,40,217,0.06);
+    color: var(--color-neon-purple);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; font-weight: 600;
+    width: max-content;
+}
+.badge-blue {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 12px; border-radius: 9999px;
+    border: 1px solid rgba(37,99,235,0.25);
+    background: rgba(37,99,235,0.06);
+    color: var(--color-neon-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; font-weight: 600;
+    width: max-content;
+}
+
+/* Bullet list items — dot sits right against the text, no native marker gap */
+.challenge-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.875rem;
+    color: var(--color-text-slate-700);
+    line-height: 1.5;
+}
+.challenge-list-item::before {
+    content: '';
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+}
+.challenge-list-item.dot-purple::before { background: var(--color-neon-purple); }
+.challenge-list-item.dot-blue::before   { background: var(--color-neon-cyan); }
+
+/* Challenge card shell */
+.challenge-card-inner {
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 15px 35px -10px rgba(15,23,42,0.12);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.challenge-card-inner:hover {
+    box-shadow: 0 25px 55px -10px rgba(15,23,42,0.2);
+    transform: translateY(-4px);
+}
+
+/* Section heading gradient (visible 3-color gradient, not two shades of one hue) */
+.heading-gradient-structure {
+    background: linear-gradient(90deg, var(--color-neon-purple), var(--color-neon-cyan), var(--color-neon-orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.underline-gradient-structure {
+    background: linear-gradient(90deg, var(--color-neon-purple), var(--color-neon-cyan), var(--color-neon-orange));
+}
+
+/* Timeline recolor for light theme */
+.timeline-central-line {
+    background: linear-gradient(to bottom, var(--color-neon-cyan), var(--color-neon-blue), var(--color-neon-purple));
+}
+.timeline-dot-shell {
+    background: #ffffff;
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid;
+}
+.timeline-dot-fill {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+}
+
+/* Orange CTA — same structural pattern as .primary-cta, recolored */
+.orange-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    font-weight: 700;
+}
+.orange-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f97316, var(--color-neon-orange), var(--color-orange-dark));
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+.orange-cta:hover .orange-cta-bg { opacity: 0.9; }
+.orange-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(234,88,12,0.35); }
+.orange-cta-label { position: relative; z-index: 10; display: flex; align-items: center; gap: 8px; }
