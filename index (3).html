@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asian Rover Challenge 2026 | MACE Kothamangalam</title>
+    <meta name="description"
+        content="Asian Rover Challenge 2026 - International Space Robotics Competition hosted at MACE Kothamangalam. Design, build, and operate next-generation Mars rovers.">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <!-- Tailwind CSS (built) -->
+    <link rel="stylesheet" href="dist/output.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+    <!-- Three.js & GLTFLoader & DRACOLoader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-space-950 text-slate-900 font-body overflow-x-hidden">
+
+
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-space-950 flex items-center justify-center">
+        <div class="text-center">
+            <div class="preloader-ring">
+                <div class="ring-outer"></div>
+                <div class="ring-inner"></div>
+            </div>
+            <p class="font-display text-slate-900 text-sm tracking-[0.3em] mt-8 loading-text">INITIALIZING MISSION</p>
+        </div>
+    </div>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="starfield" class="fixed inset-0 z-0 pointer-events-none"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-3 group" id="nav-logo">
+                    <img src="assets/images/logo.png" alt="ASRC Logo" class="h-10 w-auto">
+                    <div class="hidden sm:block">
+                        <p class="font-display text-sm font-bold text-white leading-none tracking-wider">ASIAN ROVER
+                        </p>
+                        <p class="font-display text-xs text-neon-cyan tracking-[0.25em]">CHALLENGE</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-1" id="nav-menu">
+                    <a href="/" class="nav-link active" data-section="home">Home</a>
+                    <a href="/#about" class="nav-link" data-section="about">About</a>
+                    <a href="/#challenges" class="nav-link" data-section="challenges">Challenges</a>
+                    <a href="/#timeline" class="nav-link" data-section="timeline">Timeline</a>
+                    <a href="/#venue" class="nav-link" data-section="venue">Venue</a>
+<a href="/#sponsors" class="nav-link" data-section="sponsors">Sponsors</a>
+<a href="/#contact" class="nav-link" data-section="contact">Contact</a>
+<a href="/#register" class="register-btn ml-4">
+                        <span class="btn-glow"></span>
+                        <span class="relative z-10 font-display text-xs tracking-wider">REGISTER NOW</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-toggle" class="md:hidden relative w-10 h-10 flex items-center justify-center z-[60]">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu - Fixed fullscreen overlay -->
+        <div id="mobile-menu" class="md:hidden mobile-menu-overlay">
+            <div class="flex flex-col items-center justify-center h-full gap-6 px-8">
+                <a href="/" class="mobile-nav-link font-display text-2xl tracking-wider"
+                    onclick="closeMobileMenu()">HOME</a>
+                <a href="/#about" class="mobile-nav-link font-display text-2xl tracking-wider"
+                    onclick="closeMobileMenu()">ABOUT</a>
+                <a href="#challenges" class="mobile-nav-link font-display text-2xl tracking-wider"
+                    onclick="closeMobileMenu()">CHALLENGES</a>
+                <a href="#timeline" class="mobile-nav-link font-display text-2xl tracking-wider"
+                    onclick="closeMobileMenu()">TIMELINE</a>
+                <a href="#venue" class="mobile-nav-link font-display text-2xl tracking-wider"
+                    onclick="closeMobileMenu()">VENUE</a>
+                <a href="#sponsors" class="mobile-nav-link font-display text-2xl tracking-wider"
+                    onclick="closeMobileMenu()">SPONSORS</a>
+<a href="#contact" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">CONTACT</a>
+                <a href="#register" class="register-btn mt-4" onclick="closeMobileMenu()">
+                    <span class="btn-glow"></span>
+                    <span class="relative z-10 font-display text-sm tracking-wider">REGISTER NOW</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- 3D Rover Canvas (pointer-events:none so mouse works over it) -->
+        <div id="rover-container" class="absolute inset-0 z-10 pointer-events-none"></div>
+
+        <!-- Hero Overlay Gradient -->
+        <div class="absolute inset-0 z-20 bg-gradient-to-b from-space-950/40 via-transparent to-space-950"></div>
+
+        <!-- Grid overlay -->
+        <div class="absolute inset-0 z-15 grid-overlay opacity-10"></div>
+
+        <!-- Hero Content -->
+        <div
+            class="relative z-30 py-24 px-4 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
+
+            <!-- Left Side: Header Content -->
+            <div class="text-left w-full lg:w-1/2">
+
+                <!-- Main Title -->
+                <h1 class="hero-title font-display font-black leading-none mb-6">
+                    <span
+                        class="block text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl text-slate-900 hero-line-1">ASIAN</span>
+                    <span
+                        class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple hero-line-2">ROVER</span>
+                    <span
+                        class="block text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-8xl text-slate-900 hero-line-3">CHALLENGE</span>
+                </h1>
+
+                <!-- Subtitle with dynamic text -->
+                <p class="hero-subtitle font-mono text-lg sm:text-xl text-gray-500 max-w-xl mb-8 leading-relaxed">
+                    Global Space Robotics Competition<br class="hidden sm:block">
+                    <span class="text-mars-500 font-semibold dynamic-tagline" id="dynamic-tagline">Design. Build.
+                        Conquer Mars.</span>
+                </p>
+
+                <!-- Rotating Words Bar -->
+                <div class="hero-word-rotator mb-10 overflow-hidden h-8 flex items-center justify-start">
+                    <span class="font-mono text-sm text-neon-cyan/60 tracking-widest">[&nbsp;</span>
+                    <span id="rotating-word"
+                        class="font-mono text-sm text-neon-cyan tracking-widest inline-block min-w-[200px]"></span>
+                    <span class="font-mono text-sm text-neon-cyan/60 tracking-widest">&nbsp;]</span>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-cta flex flex-col sm:flex-row items-center justify-start gap-4">
+                    <a href="#register" class="primary-cta group">
+                        <span class="cta-bg"></span>
+                        <span class="relative z-10 flex items-center gap-2 font-display text-sm tracking-wider">
+                            REGISTER YOUR TEAM
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/19qTwdPKlZmHDRoUkSgFQya6WLH6rEEGi/view?usp=drive_link"
+                        class="orange-cta-label font-display text-sm tracking-wider">
+                        EXPLORE MISSIONS
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Countdown Progress Bar -->
+            <div class="hero-countdown w-full lg:w-[45%] max-w-2xl mt-8 lg:mt-0">
+                <div
+                    class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+                    <div class="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-6 xl:gap-4 mb-8">
+                        <div class="text-left">
+                            <p
+                                class="font-mono text-[10px] sm:text-xs text-gray-500 tracking-widest uppercase mb-1 whitespace-nowrap">
+                                Mission Launch</p>
+                            <p
+                                class="font-display text-sm sm:text-base font-bold text-slate-800 tracking-wider whitespace-nowrap">
+                                REGISTRATION CLOSES</p>
+                        </div>
+                        <div class="flex gap-2 sm:gap-4 text-slate-900 font-display font-bold justify-end">
+                            <div class="text-center w-12 sm:w-16"><span id="countdown-days"
+                                    class="text-2xl sm:text-3xl text-slate-900 tabular-nums inline-block w-full">00</span><span
+                                    class="text-[9px] sm:text-[10px] block text-gray-500 font-mono font-normal tracking-widest uppercase mt-1">Days</span>
+                            </div>
+                            <div class="text-center w-12 sm:w-16"><span id="countdown-hours"
+                                    class="text-2xl sm:text-3xl text-slate-900 tabular-nums inline-block w-full">00</span><span
+                                    class="text-[9px] sm:text-[10px] block text-gray-500 font-mono font-normal tracking-widest uppercase mt-1">Hrs</span>
+                            </div>
+                            <div class="text-center w-12 sm:w-16"><span id="countdown-minutes"
+                                    class="text-2xl sm:text-3xl text-slate-900 tabular-nums inline-block w-full">00</span><span
+                                    class="text-[9px] sm:text-[10px] block text-gray-500 font-mono font-normal tracking-widest uppercase mt-1">Min</span>
+                            </div>
+                            <div class="text-center w-12 sm:w-16"><span id="countdown-seconds"
+                                    class="text-2xl sm:text-3xl text-neon-orange tabular-nums inline-block w-full">00</span><span
+                                    class="text-[9px] sm:text-[10px] block text-neon-orange font-mono font-normal tracking-widest uppercase mt-1">Sec</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative w-full h-3 bg-gray-200 rounded-full mt-10 shadow-inner">
+                        <!-- The Rover Icon -->
+                        <div id="rover-icon"
+                            class="absolute top-1/2 -translate-y-[60%] -translate-x-1/2 z-20 transition-all duration-1000 ease-linear hover:scale-110 cursor-pointer group"
+                            style="left: 0%;">
+                            <div
+                                class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-3 py-1.5 rounded-full font-mono whitespace-nowrap pointer-events-none shadow-xl border border-white/10 tracking-wider">
+                                Prepare for Launch</div>
+                            <!-- Animated Rover SVG -->
+                            <svg width="48" height="36" viewBox="0 0 40 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="drop-shadow-lg rover-svg-anim">
+                                <!-- Chassis -->
+                                <rect x="8" y="10" width="24" height="8" rx="2" fill="#1e293b" />
+                                <rect x="12" y="6" width="16" height="4" rx="1" fill="#475569" />
+                                <!-- Antenna -->
+                                <line x1="24" y1="6" x2="28" y2="2" stroke="#94a3b8" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <circle cx="28" cy="2" r="1.5" fill="#ea580c" class="animate-pulse" />
+                                <!-- Wheels (grouped for rotation if needed) -->
+                                <circle cx="10" cy="20" r="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"
+                                    class="wheel-anim" />
+                                <circle cx="20" cy="20" r="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"
+                                    class="wheel-anim" />
+                                <circle cx="30" cy="20" r="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"
+                                    class="wheel-anim" />
+                                <!-- Camera Mast -->
+                                <rect x="14" y="2" width="2" height="4" fill="#94a3b8" />
+                                <rect x="13" y="1" width="4" height="3" rx="0.5" fill="#ea580c" />
+                            </svg>
+                        </div>
+                        <!-- Progress Fill -->
+                        <div id="rover-progress-fill"
+                            class="absolute top-0 left-0 h-full bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple rounded-full transition-all duration-1000 ease-linear shadow-[0_0_15px_rgba(37,99,235,0.4)]"
+                            style="width: 0%;"></div>
+                    </div>
+                    <div class="flex justify-between mt-4">
+                        <span class="font-mono text-[10px] text-gray-500 font-semibold">T-MINUS</span>
+                        <span class="font-mono text-[10px] text-gray-500 font-semibold">AUG 1, 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="relative z-30 py-4 border-y border-white/5 bg-space-900/50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-neon-cyan stat-number"
+                        data-target="25">0</span><span
+                        class="font-display text-2xl sm:text-3xl font-bold text-neon-cyan">+</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Elite Teams</p>
+                </div>
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-neon-blue stat-number"
+                        data-target="1500">0</span><span
+                        class="font-display text-2xl sm:text-3xl font-bold text-neon-blue">+</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">General Footfall</p>
+                </div>
+                <div class="stat-item text-center">
+                    <!-- edit here -->
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-neon-purple stat-number"
+                        data-target="4">0</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Mission Tasks</p>
+                </div>
+                <div class="stat-item text-center">
+                    <span class="font-display text-2xl sm:text-3xl font-bold text-mars-300 stat-number"
+                        data-target="5">0</span>
+                    <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-1">Days of Challenge</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="relative z-30 max-[200px]:py-12 py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20 section-header">
+                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">About the Challenge</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    WELCOME TO <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">AsRC
+                        2026</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                <!-- Left: Content -->
+                <div class="about-content space-y-6">
+
+
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        The Asian Rover Challenge (AsRC) 2026 is an international <span
+                            class="text-neon-cyan font-semibold">space robotics competition</span>. designed to inspire
+                        innovation, collaboration, and engineering excellence among the next generation of roboticists.
+                        Participants are challenged to design, build, and operate autonomous or <span
+                            class="text-mars-300 font-semibold">semi-autonomous planetary rovers</span> capable of
+                        completing realistic mission scenarios inspired by <span
+                            class="text-mars-300 font-semibold">Martian exploration</span>. AsRC provides a platform for
+                        students, researchers, and innovators to apply theoretical knowledge to real-world engineering
+                        challenges while fostering international collaboration and technological advancement.
+                    </p>
+
+                    <p class="text-gray-400 leading-relaxed">
+                        Set in a near-future Mars in the 2040s, AsRC shifts the paradigm from exploration to planetary
+                        habitation. The challenge facing humanity is no longer discovering Mars—it is learning how to
+                        live, operate, and build there.
+                    </p>
+
+
+                </div>
+
+                <!-- Right: Image with effects -->
+                <div class="about-image relative">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10">
+                        <img src="assets/images/hero-rover.jpeg" alt="Mars Rover on terrain" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-space-950 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- REGISTRATION SECTION -->
+    <section id="register" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 overflow-hidden">
+        <!-- Background effects -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-purple/5"></div>
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="section-header">
+                <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Join the Mission</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-6xl font-bold mt-4 mb-6">
+                    REGISTER YOUR <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple">TEAM</span>
+                </h2>
+            </div>
+
+<div class="register-card p-8 sm:p-12 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+                <div class="grid sm:grid-cols-3 gap-8 mb-10">
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-cyan/20 to-neon-cyan/5 border border-neon-cyan/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-cyan">01</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Register Your Team</h4>
+                        <p class="text-xs text-gray-500">Register your team and complete the application form.</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-blue/20 to-neon-blue/5 border border-neon-blue/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-blue">02</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Submit Your Design</h4>
+                        <p class="text-xs text-gray-500">Submit your System Design Report, Video Presentation, Cost Report, Settlement Design Report, and 3D CAD Model.</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-neon-purple/20 to-neon-purple/5 border border-neon-purple/20 flex items-center justify-center mb-4">
+                            <span class="font-display text-2xl font-bold text-neon-purple">03</span>
+                        </div>
+                        <h4 class="font-display text-sm font-bold text-slate-900 mb-2">Build & Compete</h4>
+                        <p class="text-xs text-gray-500">Build your rover and travel to Kerala to compete on-site in the finals.</p>
+                    </div>
+                </div>
+            </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://forms.gle/nY4rJCCZyVNwZzpb8" target="_blank"
+                        class="primary-cta w-full sm:w-auto group">
+                        <span class="cta-bg"></span>
+                        <span
+                            class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider">
+                            REGISTER FOR ASRC
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </a>
+<a href="https://drive.google.com/drive/folders/1XUFxdmGZ97QTnuXzFC8Az8aBT1X-bLBK" target="_blank"
+    class="orange-cta w-full sm:w-auto group">
+    <span class="orange-cta-bg"></span>
+    <span class="orange-cta-label font-display text-sm tracking-wider">
+        RULEBOOK & GUIDELINES
+        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+    </span>
+</a>
+                </div>
+
+                <p class="text-gray-600 text-xs mt-6 font-mono">
+                    Registration fee applies • For queries: <a href="mailto:contact@asrc.space"
+                        class="text-neon-cyan hover:underline">contact@asrc.space</a>
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Prize Pool Section -->
+    <div
+        class="mt-12 max-w-3xl mx-auto w-[90%] sm:w-full register-card p-6 sm:p-12 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl relative overflow-hidden">
+        <div class="flex items-center justify-center">
+
+            <!-- First Prize -->
+            <div
+                class="text-center max-[400px]:p-4 p-8 sm:p-16 w-full rounded-2xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/40 hover:border-yellow-500/70 hover:shadow-[0_0_40px_rgba(234,179,8,0.3)] transition-all group relative flex flex-col justify-center">
+                <h4
+                    class="font-display text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-2 sm:mb-4 uppercase tracking-widest">
+                    Prize Pool</h4>
+                <p
+                    class="max-[400px]:text-5xl text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 mb-2 sm:mb-4 transition-all duration-300 transform group-hover:scale-105 drop-shadow-sm whitespace-nowrap">
+                    $<span id="prize-pool-amount" data-target="1200">0</span></p>
+                <p class="text-sm sm:text-base text-slate-700 font-mono uppercase tracking-[0.2em] font-bold">Grand
+                    Prize
+                </p>
+            </div>
+        </div>
+    </div>
+<!-- CHALLENGES SECTION -->
+<section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
+    <div class="absolute inset-0 z-0">
+        <img src="assets/images/mars.jpeg" alt="competition image" class="w-full h-full object-cover" style="opacity:0.1">
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-24 sm:mb-28 section-header">
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-heading-dark">
+                COMPETITION <span class="heading-gradient-structure">STRUCTURE</span>
+            </h2>
+            <div class="w-24 h-1 mx-auto rounded-full underline-gradient-structure" style="width:6rem"></div>
+        </div>
+
+        <!-- Stage 1 Card -->
+        <div class="challenge-card mb-8">
+            <div class="challenge-card-inner grid lg:grid-cols-5 gap-0">
+                <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
+                    <img src="assets/images/mars.jpeg" alt="Mars terrain" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(255,255,255,0.3), transparent)"></div>
+                </div>
+                <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2 flex flex-col justify-center">
+                    <div class="badge-purple mb-6">STAGE 1</div>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-heading-dark mb-4">
+                        Qualification Round
+                    </h3>
+                    <p class="text-body-muted leading-relaxed mb-8 max-w-xl">
+                        Teams submit the required technical deliverables, including engineering documentation and
+                        supporting materials. Submissions are evaluated by the judging panel to determine
+                        eligibility for the final competition.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                        <div class="challenge-list-item dot-blue">System Design Report</div>
+                        <div class="challenge-list-item dot-blue">Video Presentation</div>
+                        <div class="challenge-list-item dot-blue">Science Report</div>
+                        <div class="challenge-list-item dot-blue">Cost Analysis</div>
+                        <div class="challenge-list-item dot-blue">Settlement Design</div>
+                        <div class="challenge-list-item dot-blue">3D CAD Model</div>
+                    </div>
+
+                    <a href="https://drive.google.com/file/d/19qTwdPKlZmHDRoUkSgFQya6WLH6rEEGi/view?usp=drive_link"
+                        target="_blank" class="orange-cta w-max group">
+                        <span class="orange-cta-bg"></span>
+                        <span class="orange-cta-label font-display text-sm tracking-wider">
+                            VIEW GUIDELINES
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 2 Card -->
+        <div class="challenge-card mb-12">
+            <div class="challenge-card-inner grid lg:grid-cols-5 gap-0">
+                <div class="lg:col-span-3 p-8 sm:p-12 flex flex-col justify-center">
+                    <div class="badge-blue mb-6">STAGE 2</div>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-heading-dark mb-4">
+                        On-Site Finals (Field Competition)
+                    </h3>
+                    <p class="text-body-muted leading-relaxed mb-8 max-w-xl">
+                        Qualified teams compete on-site by completing a series of simulated planetary exploration
+                        missions that evaluate rover performance, system reliability, technical design, and
+                        operational capability.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                        <div class="challenge-list-item dot-blue">Maintenance & Repair</div>
+                        <div class="challenge-list-item dot-blue">Sample Recovery</div>
+                        <div class="challenge-list-item dot-blue">Pavement Construction</div>
+                        <div class="challenge-list-item dot-blue">Science Investigation</div>
+                        <div class="challenge-list-item dot-blue">Physical Operations</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 relative min-h-[300px]">
+                    <img src="assets/images/teams.jpeg" alt="Teams working on rover" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(255,255,255,0.3), transparent)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+<!-- TIMELINE SECTION -->
+<section id="timeline" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20 section-header">
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-heading-dark">
+                MISSION <span class="heading-gradient-structure">TIMELINE</span>
+            </h2>
+            <div class="w-24 h-1 mx-auto rounded-full underline-gradient-structure" style="width:6rem"></div>
+        </div>
+
+        <div class="relative">
+            <div class="absolute left-4 md:left-1/2 top-0 bottom-0 timeline-line timeline-central-line" style="width:1px"></div>
+
+            <div class="space-y-12">
+                <!-- Phase 01 -->
+                <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                    <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-cyan)">PHASE 01</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">Registration & Guidelines</h3>
+                        <p class="text-body-muted mt-2 text-sm">Registration opens, the official rulebook is released,
+                            and Q&A sessions are held to help teams understand the mission set and requirements.</p>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">July 2026</span>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-cyan)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-cyan)"></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-12"></div>
+                </div>
+
+                <!-- Phase 02 -->
+                <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                    <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0"></div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-blue)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-blue)"></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-12">
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-blue)">PHASE 02</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">Submission & Review</h3>
+                        <p class="text-body-muted mt-2 text-sm">Teams submit their qualifier deliverables — System
+                            Design Report, Video Presentation, Cost Report, Settlement Design Report, and 3D CAD
+                            Model — for evaluation by the judging panel.</p>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">August 2026</span>
+                    </div>
+                </div>
+
+                <!-- Phase 03 -->
+                <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                    <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-purple)">PHASE 03</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">Finalist Review</h3>
+                        <p class="text-body-muted mt-2 text-sm">Selected finalist teams submit advanced documentation,
+                            including the Science Report and Frequency Declaration, ahead of the on-site finals.</p>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">September 2026</span>
+                    </div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-purple)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-purple)"></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-12"></div>
+                </div>
+
+                <!-- Phase 04 -->
+                <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
+                    <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0"></div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-orange)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-orange)"></div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-12">
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-orange)">PHASE 04</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">The Grand Challenge</h3>
+                        <p class="text-body-muted mt-2 text-sm">On-site competition at MACE, Kothamangalam. Rovers face
+                            Mars-simulated terrain and mission tasks before the judging panel.</p>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">November 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <section id="venue" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 section-header">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    THE <span
+                        class="heading-gradient-structure">VENUE</span>
+                </h2>
+            <div class="w-24 h-1 mx-auto rounded-full underline-gradient-structure" style="width:6rem"></div>
+            </div>
+
+<div class="venue-card rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="relative min-h-[400px]">
+                        <img src="assets/images/venue.jpg" alt="MACE Kothamangalam"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute from-transparent to-space-950/50"></div>
+                    </div>
+                    <div class="p-8 sm:p-12 flex flex-col justify-center">
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                            Mar Athanasius College of Engineering
+                        </h3>
+                        <p class="text-gray-500 mb-8">Kothamangalam, Ernakulam, Kerala, India</p>
+
+                        <p class="text-gray-400 leading-relaxed mb-8">
+                            Mar Athanasius College of Engineering pioneered engineering education in Kerala in 1961.
+                            Managed by the Mar Athanasius College Association and aided by the Government of Kerala,
+                            MACE, as it is popularly known, has grown by leaps and bounds since. The institution holds
+                            Autonomous status from the UGC and is affiliated to APJ Abdul Kalam Technological
+                            University.
+                        </p>
+
+                        <a href="https://maps.google.com/?q=MACE+Kothamangalam" target="_blank"
+                            class="inline-flex items-center gap-2 text-neon-purple font-display text-sm tracking-wider hover:gap-3 transition-all">
+                            VIEW ON MAP
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- VIDEO GALLERY SECTION -->
+    <section id="video-gallery" class="relative z-30 bg-white" style="height: 350vh;">
+
+        <div
+            class="video-gallery-sticky sticky top-20 h-[calc(100vh-5rem)] w-full flex flex-col items-center justify-center overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+                <div class="text-center section-header">
+                    <span class="font-mono text-xs text-neon-cyan tracking-[0.3em] uppercase">Visual Journey</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-2 text-slate-900">
+                        EXPLORE <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">INNOVATION</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+                </div>
+            </div>
+
+            <div
+                class="video-gallery-container carousel-viewport relative w-full h-[65vh] flex items-center justify-center">
+                <div class="video-item-3d" id="video-card-1">
+                    <div class="ambient-glow"></div>
+                    <div id="yt-player-1" data-video-id="kJ3XYl8TUrw" class="w-full h-full"></div>
+                </div>
+                <div class="video-item-3d" id="video-card-2">
+                    <div class="ambient-glow"></div>
+                    <div id="yt-player-2" data-video-id="46jGX8zSaVI" class="w-full h-full"></div>
+                </div>
+                <!--<div class="video-item-3d" id="video-card-3">
+                <div class="ambient-glow"></div>
+                <div id="yt-player-3" data-video-id="C98zKFM3Vf4" class="w-full h-full"></div>
+            </div>
+            <div class="video-item-3d" id="video-card-4">
+                <div class="ambient-glow"></div>
+                <div id="yt-player-4" data-video-id="qRwe0EjqWpA" class="w-full h-full"></div>
+            </div>-->
+            </div>
+
+        </div>
+    </section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 section-header">
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                CONTACT <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">US</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Four contact blocks: WhatsApp x2, Email x2 -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 max-w-2xl mx-auto">
+
+            <!-- WhatsApp 1 -->
+            <a href="https://wa.me/919495257048" target="_blank"
+               class="group flex flex-col items-center text-center p-4 sm:p-5 rounded-xl border-2 border-green-400/30 bg-green-400/[0.06] hover:border-green-400/70 hover:bg-green-400/[0.12] transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 shrink-0 rounded-full bg-green-400/15 border border-green-400/30 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                        <path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.859.5 3.677 1.446 5.267L2 22l4.856-1.416A9.958 9.958 0 0012.004 22C17.522 22 22 17.514 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.187c-1.677 0-3.319-.451-4.752-1.303l-.34-.202-2.883.841.85-2.809-.222-.352a8.163 8.163 0 01-1.28-4.36c0-4.518 3.677-8.196 8.196-8.196s8.196 3.678 8.196 8.196-3.678 8.185-8.196 8.185z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-[10px] font-bold tracking-widest text-green-400 mb-1">WHATSAPP</p>
+                <p class="font-mono text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-green-500 transition-colors">+91 94952 57048</p>
+            </a>
+
+            <!-- WhatsApp 2 -->
+            <a href="https://wa.me/919037738084" target="_blank"
+               class="group flex flex-col items-center text-center p-4 sm:p-5 rounded-xl border-2 border-green-400/30 bg-green-400/[0.06] hover:border-green-400/70 hover:bg-green-400/[0.12] transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 shrink-0 rounded-full bg-green-400/15 border border-green-400/30 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                        <path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.859.5 3.677 1.446 5.267L2 22l4.856-1.416A9.958 9.958 0 0012.004 22C17.522 22 22 17.514 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.187c-1.677 0-3.319-.451-4.752-1.303l-.34-.202-2.883.841.85-2.809-.222-.352a8.163 8.163 0 01-1.28-4.36c0-4.518 3.677-8.196 8.196-8.196s8.196 3.678 8.196 8.196-3.678 8.185-8.196 8.185z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-[10px] font-bold tracking-widest text-green-400 mb-1">WHATSAPP</p>
+                <p class="font-mono text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-green-500 transition-colors">+91 90377 38084</p>
+            </a>
+
+            <!-- Email 1 -->
+            <a href="mailto:teamsrishti00@gmail.com"
+               class="group flex flex-col items-center text-center p-4 sm:p-5 rounded-xl border-2 border-neon-cyan/30 bg-neon-cyan/[0.06] hover:border-neon-cyan/70 hover:bg-neon-cyan/[0.12] transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 shrink-0 rounded-full bg-neon-cyan/15 border border-neon-cyan/30 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-[10px] font-bold tracking-widest text-neon-cyan mb-1">EMAIL</p>
+                <p class="font-mono text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-neon-cyan transition-colors break-all">teamsrishti00@gmail.com</p>
+            </a>
+
+            <!-- Email 2 -->
+            <a href="mailto:contact@asrc.space"
+               class="group flex flex-col items-center text-center p-4 sm:p-5 rounded-xl border-2 border-neon-cyan/30 bg-neon-cyan/[0.06] hover:border-neon-cyan/70 hover:bg-neon-cyan/[0.12] transition-all hover:-translate-y-1">
+                <div class="w-10 h-10 shrink-0 rounded-full bg-neon-cyan/15 border border-neon-cyan/30 flex items-center justify-center mb-3">
+                    <svg class="w-5 h-5 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-[10px] font-bold tracking-widest text-neon-cyan mb-1">EMAIL</p>
+                <p class="font-mono text-xs sm:text-sm font-semibold text-slate-900 group-hover:text-neon-cyan transition-colors break-all">contact@asrc.space</p>
+            </a>
+        </div>
+
+        <!-- Social Row: plain icon + text, no box -->
+        <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/teamsrishti.mace/" target="_blank"
+               class="group flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <svg class="w-7 h-7 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 3h10a4 4 0 014 4v10a4 4 0 01-4 4H7a4 4 0 01-4-4V7a4 4 0 014-4zm5 5.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM17.5 6.5h.01"/>
+                </svg>
+                <span class="font-mono text-sm sm:text-base font-semibold text-slate-900 group-hover:text-pink-500 transition-colors">@teamsrishti.mace</span>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@AsianRoverChallenge" target="_blank"
+               class="group flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <svg class="w-7 h-7 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span class="font-mono text-sm sm:text-base font-semibold text-slate-900 group-hover:text-red-500 transition-colors">@AsianRoverChallenge</span>
+            </a>
+        </div>
+    </div>
+</section>
+    <!-- SPONSORS / PARTNERS SECTION -->
+    <section id="sponsors" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 section-header">
+                <span class="font-mono text-xs text-gray-500 tracking-[0.3em] uppercase">Our Partners</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    ORGANIZED <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">BY</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 sm:gap-6 justify-center mb-16">
+                <div
+                    class="sponsor-card p-6 sm:p-8 rounded-xl border border-white/5 bg-white/[0.02] flex flex-col items-center justify-center min-h-[160px] w-48 hover:bg-white/[0.04] transition-colors">
+                    <div class="text-center w-full">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                            <img src="./assets/images/risa-color.png" alt="RISA" class="max-h-full max-w-full rounded">
+                        </div>
+                        <br>
+                        <p class="font-display text-xl font-bold tracking-wider">RISA</p>
+                        <p class="font-mono text-[10px] text-gray-400 mt-1 uppercase tracking-widest">Organising
+                            Community</p>
+                    </div>
+                </div>
+                <div
+                    class="sponsor-card p-6 sm:p-8 rounded-xl border border-white/5 bg-white/[0.02] flex flex-col items-center justify-center min-h-[160px] w-48 hover:bg-white/[0.04] transition-colors">
+                    <div class="text-center w-full">
+                        <div class="h-16 flex items-center justify-center mb-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyF91oEO_gPfTdEySx3Sjma-KdiVgl5k-SsI_r-FD_A&s"
+                                alt="MACE" class="max-h-full max-w-full rounded">
+                        </div>
+                        <br>
+                        <p class="font-display text-xl font-bold tracking-wider">MACE</p>
+                        <p class="font-mono text-[10px] text-gray-400 mt-1 uppercase tracking-widest">Host Institution
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-30 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="assets/images/logo.png" alt="ASRC Logo" class="h-12 w-auto">
+                        <div>
+                            <p class="font-display text-sm font-bold text-white leading-none tracking-wider">ASIAN
+                                ROVER</p>
+                            <p class="font-display text-xs text-neon-cyan tracking-[0.25em]">CHALLENGE 2026</p>
+                        </div>
+                    </div>
+                    <h4 class="text-white font-semibold mb-2">Where Tomorrow's Robotics Leaders Begin</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md mb-6">
+                        The Robotic Systems Integrators Association (RISA) is an international robotics organization
+                        fostering excellence in engineering, autonomous systems, and space technologies. By organizing
+                        global competitions, educational initiatives, research collaborations, and innovation programs,
+                        we empower students and professionals to design, build, and deploy technologies that shape
+                        humanity's future—on Earth and beyond.
+                        <br><br>Whether you're building your first robot or preparing for the next Mars mission, RISA is
+                        where innovation finds its community.
+                    </p>
+                    <!-- <div class="flex items-center gap-4">
+                        <a href="#" class="social-link text-gray-400 hover:text-neon-cyan transition-colors"
+                            aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link text-gray-400 hover:text-neon-cyan transition-colors"
+                            aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div> -->
+
+                    <div class="mt-8">
+                        <p class="font-display text-xs font-bold text-white tracking-wider mb-3">SUPPORTED BY</p>
+                        <div class="flex items-center gap-4">
+                            <a href="https://joinrisa.org" target="_blank"
+                                class="block transition-transform hover:scale-105">
+                                <img src="./assets/images/risa.png" alt="RISA" class="h-12 w-auto rounded">
+                            </a>
+
+                            <a href="https://mace.ac.in" target="_blank"
+                                class="block transition-transform hover:scale-105">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyF91oEO_gPfTdEySx3Sjma-KdiVgl5k-SsI_r-FD_A&s"
+                                    alt="MACE" class="h-10 w-auto rounded">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">QUICK LINKS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">About
+                                ASRC</a></li>
+                        <li><a href="#challenges"
+                                class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">ASRC Challenge</a>
+                        </li>
+                        <!--<li><a href="https://www.joinrisa.org"
+                                class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">About RISA</a></li>-->
+                        <li><a href="https://mace.ac.in"
+                                class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">About MACE</a></li>
+                        <li><a href="#register"
+                                class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Register</a></li>
+                        <li><a href="https://join.slack.com/t/asrc-j9g8914/shared_invite/zt-430ul3h44-9zbx54shlXup5rhMZiqCqQ" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Join The
+                                Community</a></li>
+                        <li>
+                            <a href="/faq.html" class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">CONTACT</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="mailto:contact@asrc.space"
+                                class="text-gray-400 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                contact@asrc.space
+                            </a>
+                        </li>
+                        <li>
+                            <span class="text-gray-400 text-sm flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                MACE, Kothamangalam, Kerala
+                            </span>
+                        </li>
+                        <li>
+                            <!-- <a href="#" target="_blank"
+                                class="text-gray-400 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                </svg>
+                                RISA
+                            </a> -->
+                        </li>
+                    </ul>
+                    <br>
+                    <div>
+                        <h4 class="font-display text-sm font-bold text-white tracking-wider mb-6">Pages</h4>
+                        <ul class="space-y-3">
+                            <li><a href="/"
+                                    class="text-gray-400 text-sm hover:text-neon-cyan transition-colors">Home</a></li>
+
+                            <li>
+                                <a href="terms.html"
+                                    class="text-gray-400 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
+                                    Terms & Conditions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="privacy.html"
+                                    class="text-gray-400 text-sm hover:text-neon-cyan transition-colors flex items-center gap-2">
+                                    Privacy Policy
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-white/5 py-6">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-xs font-mono">© 2026 Asian Rover Challenge. All rights reserved.</p>
+                <p class="text-gray-500 text-xs font-mono">Hosted at MACE Kothamangalam • Powered by Srishti</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
