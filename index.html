@@ -399,17 +399,14 @@
                         </span>
                     </a>
 <a href="https://drive.google.com/drive/folders/1XUFxdmGZ97QTnuXzFC8Az8aBT1X-bLBK" target="_blank"
-    class="w-full sm:w-auto group inline-flex items-center justify-center gap-2
-           font-display font-bold italic tracking-wide text-sm text-white
-           px-8 py-4 rounded-lg
-           bg-gradient-to-b from-orange-500 to-orange-600
-           shadow-[0_10px_25px_-6px_rgba(234,88,12,0.6)]
-           hover:from-orange-600 hover:to-orange-700 hover:-translate-y-0.5
-           transition-all duration-300">
-    RULEBOOK & GUIDELINES
-    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-    </svg>
+    class="orange-cta w-full sm:w-auto group">
+    <span class="orange-cta-bg"></span>
+    <span class="orange-cta-label font-display text-sm tracking-wider">
+        RULEBOOK & GUIDELINES
+        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+    </span>
 </a>
                 </div>
 
@@ -443,66 +440,58 @@
             </div>
         </div>
     </div>
-<!-- CHALLENGES SECTION (light theme) -->
-<section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 bg-slate-50">
+<!-- CHALLENGES SECTION -->
+<section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
     <div class="absolute inset-0 z-0">
-        <img src="assets/images/mars.jpeg" alt="competition image" class="w-full h-full object-cover opacity-[0.06]">
-        <div class="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-slate-50"></div>
+        <img src="assets/images/mars.jpeg" alt="competition image" class="w-full h-full object-cover" style="opacity:0.06">
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.8), #f8fafc)"></div>
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-24 sm:mb-28 section-header">
-            <span class="font-mono text-xs text-orange-600 tracking-[0.3em] uppercase">The Competitions</span>
-            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-slate-900">
-                COMPETITION <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-blue-600 to-orange-500">STRUCTURE</span>
+            <span class="font-mono text-xs tracking-[0.3em] uppercase" style="color: var(--color-neon-orange)">The Competitions</span>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-heading-dark">
+                COMPETITION <span class="heading-gradient-structure">STRUCTURE</span>
             </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-violet-600 via-blue-600 to-orange-500 mx-auto rounded-full"></div>
+            <div class="w-24 h-1 mx-auto rounded-full underline-gradient-structure" style="width:6rem"></div>
         </div>
 
         <!-- Stage 1 Card -->
         <div class="challenge-card mb-8">
-            <div
-                class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-slate-200 bg-white overflow-hidden
-                       shadow-[0_15px_35px_-10px_rgba(15,23,42,0.12)]
-                       transition-all duration-300 hover:shadow-[0_25px_55px_-10px_rgba(15,23,42,0.2)] hover:-translate-y-1">
+            <div class="challenge-card-inner grid lg:grid-cols-5 gap-0">
                 <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
                     <img src="assets/images/mars.jpeg" alt="Mars terrain" class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-white/30 to-transparent"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(255,255,255,0.3), transparent)"></div>
                 </div>
                 <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2 flex flex-col justify-center">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-200 bg-violet-50 mb-6 w-max">
-                        <span class="font-mono text-[10px] text-violet-700 tracking-widest font-semibold">STAGE 1</span>
-                    </div>
-                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                    <div class="badge-purple mb-6">STAGE 1</div>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-heading-dark mb-4">
                         Qualification Round
                     </h3>
-                    <p class="text-slate-600 leading-relaxed mb-8 max-w-xl">
+                    <p class="text-body-muted leading-relaxed mb-8 max-w-xl">
                         Teams submit the required technical deliverables, including engineering documentation and
                         supporting materials. Submissions are evaluated by the judging panel to determine
                         eligibility for the final competition.
                     </p>
 
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-slate-700">
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-violet-600 flex-shrink-0"></span>System Design Report</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-violet-600 flex-shrink-0"></span>Video Presentation</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-violet-600 flex-shrink-0"></span>Science Report</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-violet-600 flex-shrink-0"></span>Cost Analysis</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-violet-600 flex-shrink-0"></span>Settlement Design</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-violet-600 flex-shrink-0"></span>3D CAD Model</li>
-                    </ul>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                        <div class="challenge-list-item dot-purple">System Design Report</div>
+                        <div class="challenge-list-item dot-purple">Video Presentation</div>
+                        <div class="challenge-list-item dot-purple">Science Report</div>
+                        <div class="challenge-list-item dot-purple">Cost Analysis</div>
+                        <div class="challenge-list-item dot-purple">Settlement Design</div>
+                        <div class="challenge-list-item dot-purple">3D CAD Model</div>
+                    </div>
 
                     <a href="https://docs.google.com/document/d/1nAl5XEtAJQb5udgHfqcTJPMl98wXMcKey6zJIa9h5WI/edit?usp=drive_link"
-                        target="_blank"
-                        class="relative inline-flex items-center justify-center gap-2 font-display text-sm font-bold tracking-wider
-                               bg-orange-600 text-white px-6 py-3 rounded-lg w-max
-                               shadow-[0_10px_25px_-6px_rgba(234,88,12,0.55)]
-                               hover:bg-orange-700 hover:shadow-[0_14px_32px_-6px_rgba(234,88,12,0.7)] hover:-translate-y-0.5
-                               transition-all duration-300 group">
-                        VIEW GUIDELINES
-                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        target="_blank" class="orange-cta w-max group">
+                        <span class="orange-cta-bg"></span>
+                        <span class="orange-cta-label font-display text-sm tracking-wider">
+                            VIEW GUIDELINES
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
                     </a>
                 </div>
             </div>
@@ -510,34 +499,29 @@
 
         <!-- Stage 2 Card -->
         <div class="challenge-card mb-12">
-            <div
-                class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-slate-200 bg-white overflow-hidden
-                       shadow-[0_15px_35px_-10px_rgba(15,23,42,0.12)]
-                       transition-all duration-300 hover:shadow-[0_25px_55px_-10px_rgba(15,23,42,0.2)] hover:-translate-y-1">
+            <div class="challenge-card-inner grid lg:grid-cols-5 gap-0">
                 <div class="lg:col-span-3 p-8 sm:p-12 flex flex-col justify-center">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50 mb-6 w-max">
-                        <span class="font-mono text-[10px] text-blue-700 tracking-widest font-semibold">STAGE 2</span>
-                    </div>
-                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                    <div class="badge-blue mb-6">STAGE 2</div>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-heading-dark mb-4">
                         On-Site Finals (Field Competition)
                     </h3>
-                    <p class="text-slate-600 leading-relaxed mb-8 max-w-xl">
+                    <p class="text-body-muted leading-relaxed mb-8 max-w-xl">
                         Qualified teams compete on-site by completing a series of simulated planetary exploration
                         missions that evaluate rover performance, system reliability, technical design, and
                         operational capability.
                     </p>
 
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-slate-700">
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0"></span>Maintenance & Repair</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0"></span>Sample Recovery</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0"></span>Pavement Construction</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0"></span>Science Investigation</li>
-                        <li class="flex items-start gap-2"><span class="mt-[7px] w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0"></span>Physical Operations</li>
-                    </ul>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                        <div class="challenge-list-item dot-blue">Maintenance & Repair</div>
+                        <div class="challenge-list-item dot-blue">Sample Recovery</div>
+                        <div class="challenge-list-item dot-blue">Pavement Construction</div>
+                        <div class="challenge-list-item dot-blue">Science Investigation</div>
+                        <div class="challenge-list-item dot-blue">Physical Operations</div>
+                    </div>
                 </div>
                 <div class="lg:col-span-2 relative min-h-[300px]">
                     <img src="assets/images/teams.jpeg" alt="Teams working on rover" class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-white/30 to-transparent"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(255,255,255,0.3), transparent)"></div>
                 </div>
             </div>
         </div>
@@ -545,32 +529,33 @@
 </section>
     
 <!-- TIMELINE SECTION -->
-<section id="timeline" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 bg-slate-50">
+<section id="timeline" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-20 section-header">
-            <span class="font-mono text-xs text-blue-600 tracking-[0.3em] uppercase">Key Dates</span>
-            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-slate-900">
-                MISSION <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-700">TIMELINE</span>
+            <span class="font-mono text-xs tracking-[0.3em] uppercase" style="color: var(--color-neon-cyan)">Key Dates</span>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6 text-heading-dark">
+                MISSION <span class="heading-gradient-structure">TIMELINE</span>
             </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-violet-700 mx-auto rounded-full"></div>
+            <div class="w-24 h-1 mx-auto rounded-full underline-gradient-structure" style="width:6rem"></div>
         </div>
 
         <div class="relative">
-            <!-- Central line -->
-            <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-blue-600 to-violet-700 timeline-line"></div>
+            <div class="absolute left-4 md:left-1/2 top-0 bottom-0 timeline-line timeline-central-line" style="width:1px"></div>
 
             <div class="space-y-12">
                 <!-- Phase 01 -->
                 <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
                     <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
-                        <span class="font-mono text-xs text-blue-600 tracking-widest">PHASE 01</span>
-                        <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Registration & Guidelines</h3>
-                        <p class="text-slate-600 mt-2 text-sm">Registration opens, the official rulebook is released,
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-cyan)">PHASE 01</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">Registration & Guidelines</h3>
+                        <p class="text-body-muted mt-2 text-sm">Registration opens, the official rulebook is released,
                             and Q&A sessions are held to help teams understand the mission set and requirements.</p>
-                        <span class="font-mono text-sm text-orange-600 mt-2 inline-block">July 2026</span>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">July 2026</span>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-blue-500 bg-white flex items-center justify-center timeline-dot shadow-[0_2px_10px_rgba(37,99,235,0.25)]">
-                        <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-cyan)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-cyan)"></div>
+                        </div>
                     </div>
                     <div class="md:w-1/2 md:pl-12 pl-12"></div>
                 </div>
@@ -578,30 +563,34 @@
                 <!-- Phase 02 -->
                 <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
                     <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0"></div>
-                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-blue-700 bg-white flex items-center justify-center timeline-dot shadow-[0_2px_10px_rgba(29,78,216,0.25)]">
-                        <div class="w-3 h-3 rounded-full bg-blue-700"></div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-blue)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-blue)"></div>
+                        </div>
                     </div>
                     <div class="md:w-1/2 md:pl-12 pl-12">
-                        <span class="font-mono text-xs text-blue-700 tracking-widest">PHASE 02</span>
-                        <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Submission & Review</h3>
-                        <p class="text-slate-600 mt-2 text-sm">Teams submit their qualifier deliverables — System
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-blue)">PHASE 02</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">Submission & Review</h3>
+                        <p class="text-body-muted mt-2 text-sm">Teams submit their qualifier deliverables — System
                             Design Report, Video Presentation, Cost Report, Settlement Design Report, and 3D CAD
                             Model — for evaluation by the judging panel.</p>
-                        <span class="font-mono text-sm text-orange-600 mt-2 inline-block">August 2026</span>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">August 2026</span>
                     </div>
                 </div>
 
                 <!-- Phase 03 -->
                 <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
                     <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
-                        <span class="font-mono text-xs text-violet-700 tracking-widest">PHASE 03</span>
-                        <h3 class="font-display text-xl font-bold text-slate-900 mt-2">Finalist Review</h3>
-                        <p class="text-slate-600 mt-2 text-sm">Selected finalist teams submit advanced documentation,
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-purple)">PHASE 03</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">Finalist Review</h3>
+                        <p class="text-body-muted mt-2 text-sm">Selected finalist teams submit advanced documentation,
                             including the Science Report and Frequency Declaration, ahead of the on-site finals.</p>
-                        <span class="font-mono text-sm text-orange-600 mt-2 inline-block">September 2026</span>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">September 2026</span>
                     </div>
-                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-violet-700 bg-white flex items-center justify-center timeline-dot shadow-[0_2px_10px_rgba(109,40,217,0.25)]">
-                        <div class="w-3 h-3 rounded-full bg-violet-700"></div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-purple)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-purple)"></div>
+                        </div>
                     </div>
                     <div class="md:w-1/2 md:pl-12 pl-12"></div>
                 </div>
@@ -609,22 +598,24 @@
                 <!-- Phase 04 -->
                 <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center gap-8">
                     <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0"></div>
-                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full border-2 border-orange-500 bg-white flex items-center justify-center timeline-dot shadow-[0_2px_10px_rgba(234,88,12,0.25)]">
-                        <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 timeline-dot">
+                        <div class="timeline-dot-shell" style="border-color: var(--color-neon-orange)">
+                            <div class="timeline-dot-fill" style="background: var(--color-neon-orange)"></div>
+                        </div>
                     </div>
                     <div class="md:w-1/2 md:pl-12 pl-12">
-                        <span class="font-mono text-xs text-orange-600 tracking-widest">PHASE 04</span>
-                        <h3 class="font-display text-xl font-bold text-slate-900 mt-2">The Grand Challenge</h3>
-                        <p class="text-slate-600 mt-2 text-sm">On-site competition at MACE, Kothamangalam. Rovers face
+                        <span class="font-mono text-xs tracking-widest" style="color: var(--color-neon-orange)">PHASE 04</span>
+                        <h3 class="font-display text-xl font-bold text-heading-dark mt-2">The Grand Challenge</h3>
+                        <p class="text-body-muted mt-2 text-sm">On-site competition at MACE, Kothamangalam. Rovers face
                             Mars-simulated terrain and mission tasks before the judging panel.</p>
-                        <span class="font-mono text-sm text-orange-600 mt-2 inline-block">November 2026</span>
+                        <span class="font-mono text-sm mt-2 inline-block" style="color: var(--color-neon-orange)">November 2026</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+    
     <!-- VENUE SECTION -->
     <section id="venue" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
