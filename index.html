@@ -445,104 +445,110 @@
 
 <!-- CHALLENGES SECTION -->
 <!-- CHALLENGES SECTION -->
-    <section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
-        <!-- Mars terrain background parallax -->
-        <div class="absolute inset-0 z-0">
-            <img src="assets/images/mars.jpeg" alt="competition image" class="w-full h-full object-cover opacity-10">
-            <div class="absolute inset-0 bg-gradient-to-b from-space-950 via-space-950/80 to-space-950"></div>
+<section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
+    <!-- Mars terrain background parallax -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/images/mars.jpeg" alt="competition image" class="w-full h-full object-cover opacity-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-space-950 via-space-950/60 to-space-950"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20 section-header">
+            <span class="font-mono text-xs text-mars-300 tracking-[0.3em] uppercase">The Competitions</span>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                COMPETITION <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-mars-300 to-neon-orange">STRUCTURE</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-mars-300 to-neon-orange mx-auto rounded-full"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 section-header">
-                <span class="font-mono text-xs text-mars-300 tracking-[0.3em] uppercase">The Competitions</span>
-                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
-                    COMPETITION <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-mars-300 to-neon-orange">STRUCTURE</span>
-                </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-mars-300 to-neon-orange mx-auto rounded-full"></div>
-            </div>
-
-            <!-- Stage 1 Card (formerly ISDC) -->
-            <div class="challenge-card mb-8">
-                <div
-                    class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md overflow-hidden shadow-2xl">
-                    <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
-                        <img src="assets/images/mars.jpeg" alt="Mars terrain"
-                            class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-space-950/80 via-space-950/30 to-transparent"></div>
-                    </div>
-                    <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2 flex flex-col justify-center text-left items-start">
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-purple/30 bg-neon-purple/5 mb-6">
-                            <span class="font-mono text-[10px] text-neon-purple tracking-widest">STAGE 1</span>
-                        </div>
-                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-left">
-                            Qualification Round
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed mb-8 max-w-xl text-left">
-                            Teams submit the required technical deliverables, including engineering documentation and
-                            supporting materials. Submissions are evaluated by the judging panel to determine
-                            eligibility for the final competition.
-                        </p>
-                        
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200 list-disc ml-5 marker:text-neon-purple text-left w-full">
-                            <li class="pl-1 text-left">System Design Report</li>
-                            <li class="pl-1 text-left">Video Presentation</li>
-                            <li class="pl-1 text-left">Science Report</li>
-                            <li class="pl-1 text-left">Cost Analysis</li>
-                            <li class="pl-1 text-left">Settlement Design</li>
-                            <li class="pl-1 text-left">3D CAD Model</li>
-                        </ul>
-
-                        <a href="https://docs.google.com/document/d/1nAl5XEtAJQb5udgHfqcTJPMl98wXMcKey6zJIa9h5WI/edit?usp=drive_link"
-                            target="_blank"
-                            class="inline-flex items-center gap-2 text-neon-purple font-display text-sm tracking-wider hover:gap-3 transition-all w-max group">
-                            VIEW GUIDELINES
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </div>
+        <!-- Stage 1 Card (formerly ISDC) -->
+        <div class="challenge-card mb-8">
+            <div
+                class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden
+                       shadow-[0_30px_80px_-20px_rgba(168,85,247,0.25)]
+                       ring-1 ring-inset ring-white/[0.06]
+                       transition-all duration-300 hover:shadow-[0_40px_100px_-20px_rgba(168,85,247,0.4)] hover:-translate-y-1">
+                <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
+                    <img src="assets/images/mars.jpeg" alt="Mars terrain"
+                        class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-space-950/60 to-transparent"></div>
                 </div>
-            </div>
+                <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2 flex flex-col justify-center">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-purple/30 bg-neon-purple/5 mb-6 w-max">
+                        <span class="font-mono text-[10px] text-neon-purple tracking-widest">STAGE 1</span>
+                    </div>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                        Qualification Round
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
+                        Teams submit the required technical deliverables, including engineering documentation and
+                        supporting materials. Submissions are evaluated by the judging panel to determine
+                        eligibility for the final competition.
+                    </p>
 
-            <!-- Stage 2 Card -->
-            <div class="challenge-card mb-12">
-                <div
-                    class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md overflow-hidden shadow-2xl">
-                    <div class="lg:col-span-3 p-8 sm:p-12 flex flex-col justify-center text-left items-start">
-                        <div
-                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-6">
-                            <span class="font-mono text-[10px] text-neon-cyan tracking-widest">STAGE 2</span>
-                        </div>
-                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-left">
-                            On-Site Finals (Field Competition)
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed mb-8 max-w-xl text-left">
-                            Qualified teams compete on-site by completing a series of simulated planetary exploration
-                            missions that evaluate rover performance, system reliability, technical design, and
-                            operational capability.
-                        </p>
-                        
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200 list-disc ml-5 marker:text-neon-cyan text-left w-full">
-                            <li class="pl-1 text-left">Maintenance & Repair</li>
-                            <li class="pl-1 text-left">Sample Recovery</li>
-                            <li class="pl-1 text-left">Pavement Construction</li>
-                            <li class="pl-1 text-left">Science Investigation</li>
-                            <li class="pl-1 text-left">Physical Operations</li>
-                        </ul>
-                    </div>
-                    <div class="lg:col-span-2 relative min-h-[300px]">
-                        <img src="assets/images/teams.jpeg" alt="Teams working on rover"
-                            class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-space-950/80 via-space-950/30 to-transparent">
-                        </div>
-                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-300 list-disc ml-5 marker:text-neon-purple">
+                        <li class="pl-1">System Design Report</li>
+                        <li class="pl-1">Video Presentation</li>
+                        <li class="pl-1">Science Report</li>
+                        <li class="pl-1">Cost Analysis</li>
+                        <li class="pl-1">Settlement Design</li>
+                        <li class="pl-1">3D CAD Model</li>
+                    </ul>
+
+                    <a href="https://docs.google.com/document/d/1nAl5XEtAJQb5udgHfqcTJPMl98wXMcKey6zJIa9h5WI/edit?usp=drive_link"
+                        target="_blank"
+                        class="inline-flex items-center gap-2 text-neon-purple font-display text-sm tracking-wider hover:gap-3 transition-all w-max group">
+                        VIEW GUIDELINES
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Stage 2 Card -->
+        <div class="challenge-card mb-12">
+            <div
+                class="grid lg:grid-cols-5 gap-0 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden
+                       shadow-[0_30px_80px_-20px_rgba(34,211,238,0.25)]
+                       ring-1 ring-inset ring-white/[0.06]
+                       transition-all duration-300 hover:shadow-[0_40px_100px_-20px_rgba(34,211,238,0.4)] hover:-translate-y-1">
+                <div class="lg:col-span-3 p-8 sm:p-12 flex flex-col justify-center">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-6 w-max">
+                        <span class="font-mono text-[10px] text-neon-cyan tracking-widest">STAGE 2</span>
+                    </div>
+                    <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                        On-Site Finals (Field Competition)
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed mb-8 max-w-xl">
+                        Qualified teams compete on-site by completing a series of simulated planetary exploration
+                        missions that evaluate rover performance, system reliability, technical design, and
+                        operational capability.
+                    </p>
+
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-300 list-disc ml-5 marker:text-neon-cyan">
+                        <li class="pl-1">Maintenance & Repair</li>
+                        <li class="pl-1">Sample Recovery</li>
+                        <li class="pl-1">Pavement Construction</li>
+                        <li class="pl-1">Science Investigation</li>
+                        <li class="pl-1">Physical Operations</li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-2 relative min-h-[300px]">
+                    <img src="assets/images/teams.jpeg" alt="Teams working on rover"
+                        class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-space-950/60 to-transparent">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     
     <!-- TIMELINE SECTION -->
     <section id="timeline" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
