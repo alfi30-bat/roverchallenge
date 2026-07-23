@@ -1091,6 +1091,10 @@ body::before {
    CHALLENGES / TIMELINE / CTA — plain CSS
    (no Tailwind build dependency, uses existing
    root variables from the top of this file)
+  /* ============================================
+   CHALLENGES / TIMELINE / CTA — plain CSS
+   (no Tailwind build dependency, uses existing
+   root variables from the top of this file)
    ============================================ */
 
 .text-heading-dark   { color: var(--color-text-dark); }
@@ -1163,15 +1167,16 @@ body::before {
     background: linear-gradient(90deg, #f97316, #ef4444);
 }
 
-/* Timeline recolor for light theme — bottom pulled in so the line ends at the
-   last dot's center instead of running past it under "Grand Challenge" text */
+/* Timeline recolor for light theme — top and bottom pulled in symmetrically so
+   the line starts/ends at the first/last dot's center instead of overshooting
+   past "Registration & Guidelines" at the top and "Grand Challenge" at the bottom */
 .timeline-central-line {
     background: linear-gradient(to bottom, var(--color-neon-cyan), var(--color-neon-blue), var(--color-neon-purple));
-    top: 16px;
+    top: 90px;
     bottom: 90px;
 }
 @media (min-width: 768px) {
-    .timeline-central-line { bottom: 60px; }
+    .timeline-central-line { top: 60px; bottom: 60px; }
 }
 .timeline-dot-shell {
     background: #ffffff;
