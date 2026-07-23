@@ -14,10 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -70,8 +67,9 @@
                     <a href="/#challenges" class="nav-link" data-section="challenges">Challenges</a>
                     <a href="/#timeline" class="nav-link" data-section="timeline">Timeline</a>
                     <a href="/#venue" class="nav-link" data-section="venue">Venue</a>
-                    <a href="/#sponsors" class="nav-link" data-section="sponsors">Sponsors</a>
-                    <a href="/#register" class="register-btn ml-4">
+<a href="/#sponsors" class="nav-link" data-section="sponsors">Sponsors</a>
+<a href="/#contact" class="nav-link" data-section="contact">Contact</a>
+<a href="/#register" class="register-btn ml-4">
                         <span class="btn-glow"></span>
                         <span class="relative z-10 font-display text-xs tracking-wider">REGISTER NOW</span>
                     </a>
@@ -103,6 +101,7 @@
                     onclick="closeMobileMenu()">VENUE</a>
                 <a href="#sponsors" class="mobile-nav-link font-display text-2xl tracking-wider"
                     onclick="closeMobileMenu()">SPONSORS</a>
+<a href="#contact" class="mobile-nav-link font-display text-2xl tracking-wider" onclick="closeMobileMenu()">CONTACT</a>
                 <a href="#register" class="register-btn mt-4" onclick="closeMobileMenu()">
                     <span class="btn-glow"></span>
                     <span class="relative z-10 font-display text-sm tracking-wider">REGISTER NOW</span>
@@ -699,7 +698,70 @@
     </section>
 
 
+<!-- CONTACT SECTION -->
+<section id="contact" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 section-header">
+            <span class="font-mono text-xs text-gray-500 tracking-[0.3em] uppercase">Get In Touch</span>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-6">
+                CONTACT <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue">US</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-blue mx-auto rounded-full"></div>
+        </div>
 
+        <div class="flex flex-wrap gap-4 sm:gap-6 justify-center">
+            <!-- WhatsApp 1 -->
+            <a href="https://wa.me/91XXXXXXXXXX" target="_blank"
+               class="sponsor-card p-6 sm:p-8 rounded-xl border border-white/5 bg-white/[0.02] flex flex-col items-center justify-center min-h-[160px] w-48 hover:bg-white/[0.04] transition-colors">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                        <path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.859.5 3.677 1.446 5.267L2 22l4.856-1.416A9.958 9.958 0 0012.004 22C17.522 22 22 17.514 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.187c-1.677 0-3.319-.451-4.752-1.303l-.34-.202-2.883.841.85-2.809-.222-.352a8.163 8.163 0 01-1.28-4.36c0-4.518 3.677-8.196 8.196-8.196s8.196 3.678 8.196 8.196-3.678 8.185-8.196 8.185z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-sm font-bold tracking-wider">WHATSAPP 1</p>
+                <p class="font-mono text-[10px] text-gray-400 mt-1">+91 XXXXX XXXXX</p>
+            </a>
+
+            <!-- WhatsApp 2 -->
+            <a href="https://wa.me/91YYYYYYYYYY" target="_blank"
+               class="sponsor-card p-6 sm:p-8 rounded-xl border border-white/5 bg-white/[0.02] flex flex-col items-center justify-center min-h-[160px] w-48 hover:bg-white/[0.04] transition-colors">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                        <path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.859.5 3.677 1.446 5.267L2 22l4.856-1.416A9.958 9.958 0 0012.004 22C17.522 22 22 17.514 22 12.004 22 6.486 17.522 2 12.004 2zm0 18.187c-1.677 0-3.319-.451-4.752-1.303l-.34-.202-2.883.841.85-2.809-.222-.352a8.163 8.163 0 01-1.28-4.36c0-4.518 3.677-8.196 8.196-8.196s8.196 3.678 8.196 8.196-3.678 8.185-8.196 8.185z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-sm font-bold tracking-wider">WHATSAPP 2</p>
+                <p class="font-mono text-[10px] text-gray-400 mt-1">+91 YYYYY YYYYY</p>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:contact@asrc.space"
+               class="sponsor-card p-6 sm:p-8 rounded-xl border border-white/5 bg-white/[0.02] flex flex-col items-center justify-center min-h-[160px] w-48 hover:bg-white/[0.04] transition-colors">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-neon-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <p class="font-display text-sm font-bold tracking-wider">EMAIL</p>
+                <p class="font-mono text-[10px] text-gray-400 mt-1">contact@asrc.space</p>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/YOUR_HANDLE" target="_blank"
+               class="sponsor-card p-6 sm:p-8 rounded-xl border border-white/5 bg-white/[0.02] flex flex-col items-center justify-center min-h-[160px] w-48 hover:bg-white/[0.04] transition-colors">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <svg class="w-10 h-10 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 3h10a4 4 0 014 4v10a4 4 0 01-4 4H7a4 4 0 01-4-4V7a4 4 0 014-4zm5 5.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM17.5 6.5h.01"/>
+                    </svg>
+                </div>
+                <p class="font-display text-sm font-bold tracking-wider">INSTAGRAM</p>
+                <p class="font-mono text-[10px] text-gray-400 mt-1">@asrc.space</p>
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- SPONSORS / PARTNERS SECTION -->
     <section id="sponsors" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32 border-t border-white/5">
