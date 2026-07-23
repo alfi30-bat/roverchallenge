@@ -400,8 +400,7 @@
                     </a>
                     <a href="https://drive.google.com/drive/folders/1XUFxdmGZ97QTnuXzFC8Az8aBT1X-bLBK" target="_blank"
                         class="w-full sm:w-auto group inline-flex items-center justify-center px-8 py-4 bg-white border border-black text-black rounded hover:bg-gray-100 transition-colors">
-<span
-                            class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider px-6 py-3 border border-transparent rounded-lg transition-all duration-300 hover:border-orange-300 hover:shadow-[0_0_15px_rgba(253,186,116,0.6)] cursor-pointer group">
+<span class="relative z-10 flex items-center justify-center gap-2 font-display text-sm tracking-wider border border-transparent hover:border-orange-400 hover:shadow-[0_0_12px_rgba(251,146,60,0.6)] transition-all duration-300">
                             RULEBOOK & GUIDELINES
                             <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
@@ -443,12 +442,13 @@
         </div>
     </div>
 
-  <!-- CHALLENGES SECTION -->
+<!-- CHALLENGES SECTION -->
     <section id="challenges" class="relative z-30 max-[400px]:py-12 py-24 sm:py-32">
         <!-- Mars terrain background parallax -->
         <div class="absolute inset-0 z-0">
             <img src="assets/images/mars.jpeg" alt="competition image" class="w-full h-full object-cover opacity-10">
-            <div class="absolute inset-0 bg-gradient-to-b from-space-950 via-space-950/80 to-space-950"></div>
+            <!-- Slightly reduced via-opacity to let more background show through -->
+            <div class="absolute inset-0 bg-gradient-to-b from-space-950 via-space-950/60 to-space-950"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -468,7 +468,8 @@
                     <div class="lg:col-span-2 relative min-h-[300px] order-2 lg:order-1">
                         <img src="assets/images/mars.jpeg" alt="Mars terrain"
                             class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-space-950 via-space-950/40 to-transparent"></div>
+                        <!-- Significantly reduced shading/blur on the image -->
+                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-space-950/60 to-transparent"></div>
                     </div>
                     <div class="lg:col-span-3 p-8 sm:p-12 order-1 lg:order-2 flex flex-col justify-center">
                         <div
@@ -484,31 +485,14 @@
                             eligibility for the final competition.
                         </p>
                         
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>System Design Report</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Video Presentation</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Science Report</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Cost Analysis</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Settlement Design</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-mars-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>3D CAD Model</span>
-                            </li>
+                        <!-- Converted to standard bullet points -->
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200 list-disc ml-5 marker:text-mars-400">
+                            <li class="pl-1">System Design Report</li>
+                            <li class="pl-1">Video Presentation</li>
+                            <li class="pl-1">Science Report</li>
+                            <li class="pl-1">Cost Analysis</li>
+                            <li class="pl-1">Settlement Design</li>
+                            <li class="pl-1">3D CAD Model</li>
                         </ul>
 
                         <a href="https://docs.google.com/document/d/1nAl5XEtAJQb5udgHfqcTJPMl98wXMcKey6zJIa9h5WI/edit?usp=drive_link"
@@ -542,33 +526,20 @@
                             operational capability.
                         </p>
                         
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Maintenance & Repair</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Sample Recovery</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Pavement Construction</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Science Investigation</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Physical Operations</span>
-                            </li>
+                        <!-- Converted to standard bullet points -->
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8 text-sm text-gray-200 list-disc ml-5 marker:text-blue-400">
+                            <li class="pl-1">Maintenance & Repair</li>
+                            <li class="pl-1">Sample Recovery</li>
+                            <li class="pl-1">Pavement Construction</li>
+                            <li class="pl-1">Science Investigation</li>
+                            <li class="pl-1">Physical Operations</li>
                         </ul>
                     </div>
                     <div class="lg:col-span-2 relative min-h-[300px]">
                         <img src="assets/images/teams.jpeg" alt="Teams working on rover"
                             class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-space-950 via-space-950/40 to-transparent">
+                        <!-- Significantly reduced shading/blur on the image -->
+                        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-space-950/60 to-transparent">
                         </div>
                     </div>
                 </div>
