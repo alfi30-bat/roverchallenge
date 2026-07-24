@@ -173,83 +173,16 @@
                 </div>
             </div>
 
-            <!-- Right Side: Countdown Progress Bar -->
-            <div class="hero-countdown w-full lg:w-[45%] max-w-2xl mt-8 lg:mt-0">
-                <div
-                    class="bg-white/40 backdrop-blur-xl border border-white/50 rounded-2xl p-6 sm:p-8 shadow-2xl overflow-hidden">
-                    <div class="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-6 xl:gap-4 mb-8">
-                        <div class="text-left">
-                            <p
-                                class="font-mono text-[10px] sm:text-xs text-gray-500 tracking-widest uppercase mb-1 whitespace-nowrap">
-                                Mission Launch</p>
-                            <p
-                                class="font-display text-sm sm:text-base font-bold text-slate-800 tracking-wider whitespace-nowrap">
-                                REGISTRATION CLOSES</p>
-                        </div>
-                        <div class="flex gap-2 sm:gap-4 text-slate-900 font-display font-bold justify-end">
-                            <div class="text-center w-12 sm:w-16"><span id="countdown-days"
-                                    class="text-2xl sm:text-3xl text-slate-900 tabular-nums inline-block w-full">00</span><span
-                                    class="text-[9px] sm:text-[10px] block text-gray-500 font-mono font-normal tracking-widest uppercase mt-1">Days</span>
-                            </div>
-                            <div class="text-center w-12 sm:w-16"><span id="countdown-hours"
-                                    class="text-2xl sm:text-3xl text-slate-900 tabular-nums inline-block w-full">00</span><span
-                                    class="text-[9px] sm:text-[10px] block text-gray-500 font-mono font-normal tracking-widest uppercase mt-1">Hrs</span>
-                            </div>
-                            <div class="text-center w-12 sm:w-16"><span id="countdown-minutes"
-                                    class="text-2xl sm:text-3xl text-slate-900 tabular-nums inline-block w-full">00</span><span
-                                    class="text-[9px] sm:text-[10px] block text-gray-500 font-mono font-normal tracking-widest uppercase mt-1">Min</span>
-                            </div>
-                            <div class="text-center w-12 sm:w-16"><span id="countdown-seconds"
-                                    class="text-2xl sm:text-3xl text-neon-orange tabular-nums inline-block w-full">00</span><span
-                                    class="text-[9px] sm:text-[10px] block text-neon-orange font-mono font-normal tracking-widest uppercase mt-1">Sec</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative w-full h-3 bg-gray-200 rounded-full mt-10 shadow-inner">
-                        <!-- The Rover Icon -->
-                        <div id="rover-icon"
-                            class="absolute top-1/2 -translate-y-[60%] -translate-x-1/2 z-20 transition-all duration-1000 ease-linear hover:scale-110 cursor-pointer group"
-                            style="left: 0%;">
-                            <div
-                                class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-3 py-1.5 rounded-full font-mono whitespace-nowrap pointer-events-none shadow-xl border border-white/10 tracking-wider">
-                                Prepare for Launch</div>
-                            <!-- Animated Rover SVG -->
-                            <svg width="48" height="36" viewBox="0 0 40 30" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" class="drop-shadow-lg rover-svg-anim">
-                                <!-- Chassis -->
-                                <rect x="8" y="10" width="24" height="8" rx="2" fill="#1e293b" />
-                                <rect x="12" y="6" width="16" height="4" rx="1" fill="#475569" />
-                                <!-- Antenna -->
-                                <line x1="24" y1="6" x2="28" y2="2" stroke="#94a3b8" stroke-width="1.5"
-                                    stroke-linecap="round" />
-                                <circle cx="28" cy="2" r="1.5" fill="#ea580c" class="animate-pulse" />
-                                <!-- Wheels (grouped for rotation if needed) -->
-                                <circle cx="10" cy="20" r="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"
-                                    class="wheel-anim" />
-                                <circle cx="20" cy="20" r="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"
-                                    class="wheel-anim" />
-                                <circle cx="30" cy="20" r="4" fill="#0f172a" stroke="#64748b" stroke-width="1.5"
-                                    class="wheel-anim" />
-                                <!-- Camera Mast -->
-                                <rect x="14" y="2" width="2" height="4" fill="#94a3b8" />
-                                <rect x="13" y="1" width="4" height="3" rx="0.5" fill="#ea580c" />
-                            </svg>
-                        </div>
-                        <!-- Progress Fill -->
-                        <div id="rover-progress-fill"
-                            class="absolute top-0 left-0 h-full bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple rounded-full transition-all duration-1000 ease-linear shadow-[0_0_15px_rgba(37,99,235,0.4)]"
-                            style="width: 0%;"></div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                        <span class="font-mono text-[10px] text-gray-500 font-semibold">T-MINUS</span>
-                        <span class="font-mono text-[10px] text-gray-500 font-semibold">AUG 1, 2026</span>
-                    </div>
-                </div>
+<!-- Right Side: Blended Rover Visual -->
+            <section>
+            <div class="hero-rover-visual w-full lg:w-[45%] max-w-2xl mt-8 lg:mt-0 relative">
+                <img src="assets/images/hero-rover.jpeg" alt="Mars Rover"
+                    class="w-full h-auto hero-rover-img select-none pointer-events-none">
+                <p class="font-mono text-[10px] text-gray-500 tracking-widest uppercase text-center mt-4">
+                    Registration closes <span class="text-neon-orange">Aug 1, 2026</span>
+                </p>
             </div>
-        </div>
-
-    </section>
+        </section>
 
     <!-- STATS BAR -->
     <section class="relative z-30 py-4 border-y border-white/5 bg-space-900/50 backdrop-blur-xl">
