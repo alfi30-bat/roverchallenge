@@ -514,9 +514,10 @@ body.menu-open {
 }
 
 /* --- Hero Rover Visual (blended, no card chrome) --- */
+/* --- Hero Rover Visual (blended, no card chrome) --- */
 .hero-rover-visual .hero-rover-img {
-    mask-image: radial-gradient(ellipse 72% 72% at 50% 45%, black 45%, transparent 92%);
-    -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 45%, black 45%, transparent 92%);
+    mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
     filter: drop-shadow(0 20px 40px rgba(45, 20, 2, 0.15));
     border-radius: 0;
 }
