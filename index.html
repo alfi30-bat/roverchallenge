@@ -119,7 +119,16 @@
         <div class="absolute inset-0 z-20 bg-gradient-to-b from-space-950/40 via-transparent to-space-950"></div>
 
         <!-- Grid overlay -->
+        <!-- Grid overlay -->
         <div class="absolute inset-0 z-15 grid-overlay opacity-10"></div>
+
+        <!-- Full-bleed Rover Visual (blends across entire screen width) -->
+        <div class="hero-rover-visual absolute inset-0 z-10 pointer-events-none">
+            <img src="assets/images/hero-rover.jpeg" alt="Mars Rover"
+                class="hero-rover-img w-full h-full select-none">
+        </div>
+
+        <!-- Hero Content -->
 
         <!-- Hero Content -->
         <div
@@ -175,16 +184,15 @@
 
 <!-- Right Side: Blended Rover Visual -->
             
-            <div class="hero-rover-visual w-full lg:w-[45%] max-w-2xl mt-8 lg:mt-0 relative">
-                <img src="assets/images/hero-rover.jpeg" alt="Mars Rover"
-                    class="w-full h-auto hero-rover-img select-none pointer-events-none">
-                <p class="font-mono text-[10px] text-gray-500 tracking-widest uppercase text-center mt-4">
+<!-- Right Side: Caption only (image now full-bleed behind content) -->
+            <div class="w-full lg:w-[45%] max-w-2xl mt-8 lg:mt-0 relative flex items-end justify-center lg:justify-start" style="min-height: 200px;">
+                <p class="font-mono text-[10px] text-gray-500 tracking-widest uppercase text-center lg:text-left">
                     Registration closes <span class="text-neon-orange">Aug 1, 2026</span>
                 </p>
             </div>
         </div>
         </section>
-
+    
     <!-- STATS BAR -->
     <section class="relative z-30 py-4 border-y border-white/5 bg-space-900/50 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-4">
