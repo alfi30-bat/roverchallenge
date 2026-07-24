@@ -514,12 +514,30 @@ body.menu-open {
 }
 
 /* --- Hero Rover Visual (blended, no card chrome) --- */
-/* --- Hero Rover Visual (blended, no card chrome) --- */
+/* --- Hero Rover Visual: full-bleed layer behind hero content, fading left-to-right across the whole screen --- */
+.hero-rover-visual {
+    overflow: hidden;
+}
+
 .hero-rover-visual .hero-rover-img {
-    mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
-    filter: drop-shadow(0 20px 40px rgba(45, 20, 2, 0.15));
-    border-radius: 0;
+    object-fit: cover;
+    object-position: right center;
+    opacity: 0.9;
+    mask-image: linear-gradient(to right, transparent 0%, black 40%, black 80%, transparent 100%),
+                 linear-gradient(to bottom, transparent 0%, black 20%, black 85%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 80%, transparent 100%),
+                         linear-gradient(to bottom, transparent 0%, black 20%, black 85%, transparent 100%);
+    -webkit-mask-composite: source-in;
+}
+
+@media (max-width: 1024px) {
+    .hero-rover-visual .hero-rover-img {
+        object-position: center center;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 75%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 75%, transparent 100%);
+        opacity: 0.35;
+    }
 }
 
 /* --- Scroll Indicator --- */
