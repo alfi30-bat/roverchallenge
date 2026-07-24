@@ -565,62 +565,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ========== REGISTRATION COUNTDOWN ==========
-function initCountdown() {
-    // Target date: August 1, 2026, 23:59:59 local time
-    const targetDate = new Date('August 1, 2026 23:59:59').getTime();
-    // Start date for progress bar calculation
-    const startDate = new Date('June 1, 2026 00:00:00').getTime();
-    
-    const daysEl = document.getElementById('countdown-days');
-    const hoursEl = document.getElementById('countdown-hours');
-    const minsEl = document.getElementById('countdown-minutes');
-    const secsEl = document.getElementById('countdown-seconds');
-    
-    const roverIcon = document.getElementById('rover-icon');
-    const progressFill = document.getElementById('rover-progress-fill');
-    
-    if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
-    
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-        
-        // Progress bar logic
-        const totalDuration = targetDate - startDate;
-        const elapsed = now - startDate;
-        let progress = (elapsed / totalDuration) * 100;
-        progress = Math.max(0, Math.min(progress, 100)); // Clamp between 0-100%
-        
-        if (roverIcon && progressFill) {
-            roverIcon.style.left = `${progress}%`;
-            progressFill.style.width = `${progress}%`;
-        }
-        
-        if (distance < 0) {
-            daysEl.innerText = "00";
-            hoursEl.innerText = "00";
-            minsEl.innerText = "00";
-            secsEl.innerText = "00";
-            return;
-        }
-        
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        daysEl.innerText = days.toString().padStart(2, '0');
-        hoursEl.innerText = hours.toString().padStart(2, '0');
-        minsEl.innerText = minutes.toString().padStart(2, '0');
-        secsEl.innerText = seconds.toString().padStart(2, '0');
-    }
-    
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-}
-
-document.addEventListener('DOMContentLoaded', initCountdown);
 
 // ========== STEPPER SCROLL ANIMATION ==========
 document.addEventListener('DOMContentLoaded', () => {
