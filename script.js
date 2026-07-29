@@ -131,144 +131,6 @@ window.addEventListener('load', () => {
     window.addEventListener('resize', () => { resize(); createStars(); });
 })();
 
-// ========== THREE.JS 3D ROVER ==========
-(function initRover3D() {
-    const container = document.getElementById('rover-container');
-    if (!container) return;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
-    renderer.domElement.style.pointerEvents = 'none'; // Ensure mouse goes through
-    container.appendChild(renderer.domElement);
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404060, 0.5);
-    scene.add(ambientLight);
-
-    const mainLight = new THREE.DirectionalLight(0x00f5ff, 1.2);
-    mainLight.position.set(5, 8, 5);
-    scene.add(mainLight);
-
-    const accentLight = new THREE.PointLight(0xff6b35, 0.8, 20);
-    accentLight.position.set(-5, 3, -3);
-    scene.add(accentLight);
-
-    const rimLight = new THREE.PointLight(0xa855f7, 0.6, 15);
-    rimLight.position.set(3, -2, -5);
-    scene.add(rimLight);
-
-    // Load GLTF Rovers
-    const roverGroup = new THREE.Group();
-    const loader = new THREE.GLTFLoader();
-
-    // Configure DRACOLoader for compressed models
-    const dracoLoader = new THREE.DRACOLoader();
-    dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
-    loader.setDRACOLoader(dracoLoader);
-
-    loader.load('assets/prana_v1.gltf', (gltf) => {
-        const prana = gltf.scene;
-        prana.scale.set(0.4, 0.4, 0.4);
-        prana.position.set(-1.2, 0.5, 0);
-        // Slightly rotate it
-        prana.rotation.y = 0.2;
-
-        // Ensure materials interact with lights
-        prana.traverse((node) => {
-            if (node.isMesh && node.material) {
-                node.material.metalness = 0.5;
-                node.material.roughness = 0.5;
-                // Optional: fix emissive map intensity if they are glowing too much
-            }
-        });
-        roverGroup.add(prana);
-    });
-
-    loader.load('assets/srishti_rv26.gltf', (gltf) => {
-        const srishti = gltf.scene;
-        srishti.scale.set(0.4, 0.4, 0.4);
-        srishti.position.set(1.2, 0.5, 0);
-        // Slightly rotate it
-        srishti.rotation.y = -0.2;
-
-        srishti.traverse((node) => {
-            if (node.isMesh && node.material) {
-                node.material.metalness = 0.5;
-                node.material.roughness = 0.5;
-            }
-        });
-        roverGroup.add(srishti);
-    });
-
-    const particleCount = 60;
-    const particleGeo = new THREE.BufferGeometry();
-    const particlePos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-        particlePos[i * 3] = (Math.random() - 0.5) * 8;
-        particlePos[i * 3 + 1] = (Math.random() - 0.5) * 6;
-        particlePos[i * 3 + 2] = (Math.random() - 0.5) * 8;
-    }
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0x4f46e5, size: 0.06, transparent: true, opacity: 0.5 });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    roverGroup.position.set(2, -1, 0);
-    roverGroup.rotation.y = -0.5;
-    scene.add(roverGroup);
-
-    camera.position.set(4, 3, 6);
-    camera.lookAt(roverGroup.position);
-
-    // Mouse interaction (still tracks mouse for 3D rotation even with pointer-events:none on canvas)
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
-
-    let scrollProgress = 0;
-    window.addEventListener('scroll', () => {
-        scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-    });
-
-    let time = 0;
-    function animateRover() {
-        time += 0.01;
-        roverGroup.rotation.y = -0.5 + Math.sin(time * 0.3) * 0.3 + mouseX * 0.2;
-        roverGroup.rotation.x = Math.sin(time * 0.2) * 0.05 + mouseY * 0.1;
-        roverGroup.position.y = -1 + Math.sin(time * 0.5) * 0.15;
-        roverGroup.position.x = 2 - scrollProgress * 6;
-        roverGroup.scale.setScalar(1 - scrollProgress * 0.3);
-
-        const positions = particles.geometry.attributes.position.array;
-        for (let i = 0; i < particleCount; i++) {
-            positions[i * 3 + 1] += Math.sin(time + i) * 0.002;
-            positions[i * 3] += Math.cos(time * 0.5 + i) * 0.001;
-        }
-        particles.geometry.attributes.position.needsUpdate = true;
-        particles.rotation.y = time * 0.05;
-
-        accentLight.position.x = Math.sin(time) * 5;
-        rimLight.position.z = Math.cos(time * 0.7) * 5;
-
-        renderer.render(scene, camera);
-        requestAnimationFrame(animateRover);
-    }
-
-    animateRover();
-
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-})();
 
 // ========== GSAP ANIMATIONS ==========
 function initAnimations() {
@@ -277,15 +139,13 @@ function initAnimations() {
     const heroTl = gsap.timeline({ delay: 0.5 });
 
     heroTl
-        .from('.hero-tag', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' })
         .from('.hero-line-1', { y: 80, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.4')
         .from('.hero-line-2', { y: 80, opacity: 0, scale: 0.9, duration: 1, ease: 'power4.out' }, '-=0.7')
         .from('.hero-line-3', { y: 80, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.7')
         .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
         .from('.hero-word-rotator', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
         .from('.hero-cta', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-.from('.hero-rover-visual', { opacity: 0, duration: 1.2, ease: 'power3.out' }, '-=0.3')
-        .from('.scroll-indicator', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2');
+.from('.hero-rover-visual', { opacity: 0, duration: 1.2, ease: 'power3.out' }, '-=0.3');
 
     // Section Headers
     gsap.utils.toArray('.section-header').forEach(header => {
@@ -304,11 +164,6 @@ function initAnimations() {
         scrollTrigger: { trigger: '.about-image', start: 'top 80%', toggleActions: 'play none none none' },
         x: 60, opacity: 0, duration: 1, ease: 'power3.out'
     });
-    gsap.from('.about-feature', {
-        scrollTrigger: { trigger: '.about-feature', start: 'top 85%', toggleActions: 'play none none none' },
-        y: 40, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out'
-    });
-
     // Challenge Cards
     gsap.utils.toArray('.challenge-card').forEach(card => {
         gsap.from(card, {
@@ -364,12 +219,6 @@ function initAnimations() {
                 gsap.to(stat, { innerText: target, duration: 2, snap: { innerText: 1 }, ease: 'power2.out' });
             }, once: true
         });
-    });
-
-    // Parallax
-    gsap.to('#rover-container', {
-        scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 1 },
-        y: 200, opacity: 0, ease: 'none'
     });
 
     // Dynamic Text Animations
@@ -504,14 +353,6 @@ function initTextAnimations() {
         gsap.from(p, {
             scrollTrigger: { trigger: p, start: 'top 85%', toggleActions: 'play none none none' },
             y: 30, opacity: 0, duration: 0.8, delay: idx * 0.15, ease: 'power3.out'
-        });
-    });
-
-    // --- Staggered reveal on about-feature cards ---
-    gsap.utils.toArray('.about-feature').forEach((card, idx) => {
-        gsap.from(card, {
-            scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' },
-            y: 40, opacity: 0, duration: 0.6, delay: idx * 0.1, ease: 'power3.out'
         });
     });
 
