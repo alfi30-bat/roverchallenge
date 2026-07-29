@@ -1103,11 +1103,17 @@ body::before {
    past "Registration & Guidelines" at the top and "Grand Challenge" at the bottom */
 .timeline-central-line {
     background: linear-gradient(to bottom, var(--color-neon-cyan), var(--color-neon-blue), var(--color-neon-purple));
-    top: 90px;
-    bottom: 90px;
+    top: 20px;    /* fallback until JS measures the real dot positions */
+    bottom: 20px;
+}
+
+.timeline-dot {
+    top: 4px;     /* pin dot near the top of each phase block on mobile, regardless of text length */
 }
 @media (min-width: 768px) {
-    .timeline-central-line { top: 60px; bottom: 60px; }
+    .timeline-dot {
+        top: auto;  /* restore flex vertical-centering, which already works correctly on desktop */
+    }
 }
 .timeline-dot-shell {
     background: #ffffff;
