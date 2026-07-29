@@ -390,7 +390,23 @@ function initTextAnimations() {
         }, 4000);
     }
 }
+// ========== TIMELINE LINE FIT ==========
+function updateTimelineLine() {
+    const wrapper = document.getElementById('timeline-track');
+    const line = document.querySelector('.timeline-central-line');
+    const dots = document.querySelectorAll('.timeline-dot');
+    if (!wrapper || !line || dots.length < 2) return;
 
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const firstDotRect = dots[0].getBoundingClientRect();
+    const lastDotRect = dots[dots.length - 1].getBoundingClientRect();
+
+    const firstCenter = firstDotRect.top + firstDotRect.height / 2 - wrapperRect.top;
+    const lastCenter = lastDotRect.top + lastDotRect.height / 2 - wrapperRect.top;
+
+    line.style.top = `${firstCenter}px`;
+    line.style.bottom = `${wrapperRect.height - lastCenter}px`;
+}
 // ========== SMOOTH SCROLL ==========
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
