@@ -12,18 +12,7 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
-// Begin preloader sequence on load
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            preloader.classList.add('hidden');
-        }
-        if (typeof initAnimations === 'function') {
-            initAnimations();
-        }
-    }, 1500); // Wait 1.5s then fade out preloader
-});
+
 
 // ========== STARFIELD CANVAS ==========
 (function initStarfield() {
