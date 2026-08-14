@@ -154,11 +154,11 @@ body.menu-open {
 
 #navbar {
     background: #4d0d08;
-   /*150b04*/
+   /*150b04    below rgba(21, 11, 4, 0.95)*/
 }
 
 #navbar.scrolled {
-    background: rgba(21, 11, 4, 0.95);
+    background: #4d0d08;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
