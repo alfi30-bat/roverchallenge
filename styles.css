@@ -153,7 +153,8 @@ body.menu-open {
 }
 
 #navbar {
-    background: #150b04;
+    background: #4d0d08;
+   /*150b04*/
 }
 
 #navbar.scrolled {
