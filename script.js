@@ -199,16 +199,23 @@ function initAnimations() {
         y: 60, opacity: 0, scale: 0.95, duration: 0.8, ease: 'power3.out'
     });
 
-    // Stats Counter
-    gsap.utils.toArray('.stat-number').forEach(stat => {
-        const target = parseInt(stat.dataset.target);
-        ScrollTrigger.create({
-            trigger: stat, start: 'top 90%',
-            onEnter: () => {
-                gsap.to(stat, { innerText: target, duration: 2, snap: { innerText: 1 }, ease: 'power2.out' });
-            }, once: true
-        });
+
+   // Stats Counter
+gsap.utils.toArray('.stat-number').forEach(stat => {
+    const target = parseInt(stat.dataset.target);
+    ScrollTrigger.create({
+        trigger: stat, start: 'top 90%',
+        onEnter: () => {
+            const obj = { val: 0 };
+            gsap.to(obj, {
+                val: target,
+                duration: 2,
+                ease: 'power2.out',
+                onUpdate: () => { stat.innerText = Math.floor(obj.val); }
+            });
+        }, once: true
     });
+});
 
     // Dynamic Text Animations
     initTextAnimations();
@@ -636,4 +643,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
 
     observer.observe(prizeElement);
+});
+// ADD THIS AT THE VERY BOTTOM OF script.js
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap !== 'undefined') {
+        initAnimations();
+    }
 });
